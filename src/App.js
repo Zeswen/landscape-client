@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 
-import { LandingNav, NavUl, NavLi } from './App.styled';
+import { LandingNav, NewProjectButton, NavUl, NavLi } from './App.styled';
 
 
 import Home from './components/Home';
@@ -11,11 +11,19 @@ import Login from './components/auth/Login';
 import Dashboard from './components/Dashboard'
 
 class App extends Component {
-    state = {
-        user: null
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            user: null
+        }
+    
+        this.service = new AuthService();
+    
+        this.isLoggedIn();
     }
 
-    service = new AuthService();
 
     backHome = () => this.props.history.push('/');
 
@@ -46,31 +54,29 @@ class App extends Component {
             })
     }
 
-    
-
-    componentDidMount() {
-        this.isLoggedIn();
-    }
-
     render() {
         return (
             <div className="App">
                 <LandingNav>
                     <img onClick={this.backHome} src="" alt="logo"/>
+                    {
+                    this.state.user &&
+                    <NewProjectButton>New Project</NewProjectButton>
+                    }
                     <NavUl>
                         {
-                            this.state.user
-                            ? (
-                                <React.Fragment>
-                                    <NavLi><Link to='/' onClick={this.logout}>Logout</Link></NavLi>
-                                </React.Fragment>
-                            )
-                            : (
-                                <React.Fragment>
-                                    <NavLi><Link to='/login'>Log In</Link></NavLi>
-                                    <NavLi><Link to='/signup'>Sign Up</Link></NavLi>
-                                </React.Fragment>
-                            )
+                        this.state.user
+                        ? (
+                            <React.Fragment>
+                                <NavLi><Link to='/' onClick={this.logout}>Logout</Link></NavLi>
+                            </React.Fragment>
+                        )
+                        : (
+                            <React.Fragment>
+                                <NavLi><Link to='/login'>Log In</Link></NavLi>
+                                <NavLi><Link to='/signup'>Sign Up</Link></NavLi>
+                            </React.Fragment>
+                        )
                         }
                         
                     </NavUl>
@@ -79,38 +85,38 @@ class App extends Component {
                     <Route 
                     exact
                     path="/signup"
-                    render={(e) => 
-                        this.state.user
+                    render={e => this.state.user
                         ? <Redirect to="/" />
                         : (
-                        <React.Fragment>
-                            <Home {...e} />
-                            <Signup 
-                            {...e}
-                            getUser={this.getUser}
-                            />
-                        </React.Fragment>
-                    )}
+                            <React.Fragment>
+                                <Home {...e} />
+                                <Signup 
+                                {...e}
+                                getUser={this.getUser}
+                                />
+                            </React.Fragment>
+                        )
+                    }
                     />
                     <Route 
                     exact
                     path="/login"
-                    render={(e) => 
-                        this.state.user
+                    render={e => this.state.user
                         ? <Redirect to="/" />
                         : (
-                        <React.Fragment>
-                            <Home {...e} />
-                            <Login 
-                            {...e}
-                            getUser={this.getUser}
-                            />
-                        </React.Fragment>
+                            <React.Fragment>
+                                <Home {...e} />
+                                <Login 
+                                {...e}
+                                getUser={this.getUser}
+                                />
+                            </React.Fragment>
                     )}
                     />
                     <Route 
                     path="/"
-                    component={
+                    component=
+                    {
                     this.state.user
                     ? Dashboard
                     : Home

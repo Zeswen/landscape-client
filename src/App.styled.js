@@ -9,6 +9,10 @@ export const LandingNav = styled.nav`
     font-size: 1.25rem;
 `;
 
+export const NewProjectButton = styled.button`
+    padding: 1rem;
+`;
+
 export const NavUl = styled.ul`
     display: flex;
     justify-content: space-evenly;
