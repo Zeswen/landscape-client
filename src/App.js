@@ -10,6 +10,7 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Dashboard from './components/Dashboard';
 import NewPage from './components/NewPage';
+import Page from './components/Page';
 
 class App extends Component {
 
@@ -56,10 +57,11 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="App">
                 <LandingNav>
-                    <img onClick={this.backHome} src="" alt="logo"/>
+                    <img onClick={e => this.backHome(e)} src="" alt="logo"/>
                     {
                     this.state.user &&
                     <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
@@ -123,6 +125,17 @@ class App extends Component {
                                 <NewPage 
                                 {...e}
                                 user={this.state.user}
+                                />
+                            </React.Fragment>
+                    )}
+                    />
+                    <Route 
+                    exact
+                    path="/pages/:id"
+                    render={e => (
+                            <React.Fragment>
+                                <Page 
+                                {...e}
                                 />
                             </React.Fragment>
                     )}
