@@ -8,7 +8,8 @@ import Home from './components/Home';
 import AuthService from './utils/AuthService';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import Dashboard from './components/Dashboard'
+import Dashboard from './components/Dashboard';
+import NewPage from './components/NewPage';
 
 class App extends Component {
 
@@ -61,7 +62,7 @@ class App extends Component {
                     <img onClick={this.backHome} src="" alt="logo"/>
                     {
                     this.state.user &&
-                    <NewProjectButton>New Project</NewProjectButton>
+                    <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
                     }
                     <NavUl>
                         {
@@ -109,6 +110,19 @@ class App extends Component {
                                 <Login 
                                 {...e}
                                 getUser={this.getUser}
+                                />
+                            </React.Fragment>
+                    )}
+                    />
+                    <Route 
+                    exact
+                    path="/newPage"
+                    render={e => (
+                            <React.Fragment>
+                                <Dashboard {...e} />
+                                <NewPage 
+                                {...e}
+                                user={this.state.user}
                                 />
                             </React.Fragment>
                     )}

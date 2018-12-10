@@ -12,7 +12,6 @@ export const LandingNav = styled.nav`
 `;
 
 export const NewProjectButton = styled.button`
-    padding: 1rem;
     margin: 0 auto
 `;
 
