@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
+import { HomeWrapper } from './Home.styled';
+
 export default class Home extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <HomeWrapper>
                 <p>Home</p>
-            </React.Fragment>
+            </HomeWrapper>
     )
   }
 }

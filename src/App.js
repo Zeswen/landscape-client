@@ -115,11 +115,9 @@ class App extends Component {
                     />
                     <Route 
                     path="/"
-                    component=
-                    {
-                    this.state.user
-                    ? Dashboard
-                    : Home
+                    render={e => this.state.user
+                    ? <Dashboard {...e} user={this.state.user} />
+                    : <Home {...e} />
                     }
                     />
                 </Switch>
