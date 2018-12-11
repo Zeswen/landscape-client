@@ -24,10 +24,10 @@ class SidebarHeader extends Component {
     handleMessageTimeout = () => {
         setTimeout(() => {
             this.setState(prevState => ({
-                prevState,
+                ...prevState,
                 message: null
             }));
-        }, 3000)
+        }, 2500)
     }
 
     render() {

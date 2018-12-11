@@ -44,7 +44,7 @@ class Editor extends Component {
         this.service.getPage(this.props.match.params.id)
             .then(page => {
                 this.setState(prevState => ({
-                    prevState,
+                    ...prevState,
                     ...page
                 }));
             })

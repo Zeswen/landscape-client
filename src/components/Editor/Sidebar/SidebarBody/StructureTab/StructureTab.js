@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { StyledTab, StyledTabContent, ContentSection, SelectedColorBox, ColorModalContainer, ColorBox } from './StructureTab.styled' 
+import { StyledTab, StyledTabContent, ContentSection } from './StructureTab.styled' 
 
 export default class StructureTab extends React.Component {
     state = {
         isColorModalOpen: false,
         isBackgroundColorModalOpen: false,
+    }
+
+    handleOnLogoChange = (event) => {
+        const logo = event.target.files[0];
+        this.props.handleOnChange('imgUrl', logo);
     }
 
     handleOnFontFamilyChange = (event) => {
@@ -24,8 +29,13 @@ export default class StructureTab extends React.Component {
     }
 
     handleOnBurguerChange = (event) => {
-        const hasBurguerMenu = event.target.checked;
-        this.props.handleOnChange('hasBurguerMenu', hasBurguerMenu);
+        const hasMenu = event.target.checked;
+        this.props.handleOnChange('hasMenu', hasMenu);
+    }
+
+    handleOnMenuSizeChange = (event) => {
+        const menuSize = event.target.value;
+        this.props.handleOnChange('menuSize', menuSize);
     }
 
     handleOnReverseChange = (event) => {
@@ -33,11 +43,13 @@ export default class StructureTab extends React.Component {
         this.props.handleOnChange('isReverse', isReverse);
     }
 
-    handleOnColorClick = (color) => {
+    handleOnColorClick = (event) => {
+        const color = event.target.value;
         this.props.handleOnChange('color', color);
     }
 
-    handleOnBackgroundColorClick = (backgroundColor) => {
+    handleOnBackgroundColorClick = (event) => {
+        const backgroundColor = event.target.value;
         this.props.handleOnChange('backgroundColor', backgroundColor);
     }
 
@@ -56,7 +68,7 @@ export default class StructureTab extends React.Component {
     }
 
     render() {
-        const { onClickTab, title, fonts, colors, isOpen, innerStructure } = this.props;
+        const { onClickTab, title, fonts, isOpen, innerStructure } = this.props;
 
         return (
             <React.Fragment>
@@ -67,6 +79,10 @@ export default class StructureTab extends React.Component {
                 </StyledTab>
                 {isOpen && (
                     <StyledTabContent>
+                        <ContentSection>
+                            <h4>Logo</h4>
+                            <input type='file' onChange={this.handleOnLogoChange} disabled />
+                        </ContentSection>
                         <ContentSection>
                             <h4>Font Family</h4>
                             <select onChange={this.handleOnFontFamilyChange} value={innerStructure.fontFamily}>
@@ -87,28 +103,16 @@ export default class StructureTab extends React.Component {
                         </ContentSection>
                         <ContentSection>
                             <h4>Color</h4>
-                            <SelectedColorBox color={innerStructure.color} onClick={this.handleOnColorBoxClick} />
-                            <ColorModalContainer open={this.state.isColorModalOpen}>
-                                <button onClick={this.handleOnColorBoxClick}>X</button>
-                                {colors.map(color => (
-                                    <ColorBox onClick={() => this.handleOnColorClick(color)} key={color} color={color} />
-                                ))}
-                            </ColorModalContainer>
+                            <input type="color" onChange={this.handleOnColorClick} value={innerStructure.color} />
                         </ContentSection>
                         <ContentSection>
                             <h4>BG Color</h4>
-                            <SelectedColorBox color={innerStructure.backgroundColor} onClick={this.handleOnBackgroundColorBoxClick} />
-                            <ColorModalContainer open={this.state.isBackgroundColorModalOpen}>
-                                <button onClick={this.handleOnBackgroundColorBoxClick}>X</button>
-                                {colors.map(color => (
-                                    <ColorBox onClick={() => this.handleOnBackgroundColorClick(color)} key={color} color={color} />
-                                ))}
-                            </ColorModalContainer>
+                            <input type="color" onChange={this.handleOnBackgroundColorClick} value={innerStructure.backgroundColor} />
                         </ContentSection>
                         <ContentSection>
                             <h4>Position</h4>
                             <select onChange={this.handleOnPositionChange} value={innerStructure.position}>
-                                {innerStructure.hasBurguerMenu
+                                {innerStructure.hasMenu
                                     ? (
                                         <option value="left">Aside</option>
                                     ) : (
@@ -122,16 +126,28 @@ export default class StructureTab extends React.Component {
                             </select>
                         </ContentSection>
                         <ContentSection>
-                            <h4>Burguer Menu</h4>
+                            <h4>Menu</h4>
                             <input 
                                 type="checkbox" 
-                                checked={innerStructure.hasBurguerMenu} 
+                                checked={innerStructure.hasMenu} 
                                 onChange={this.handleOnBurguerChange}
                             />
                         </ContentSection>
-                        {(innerStructure.hasBurguerMenu || innerStructure.isReverse) && (
+                        {(innerStructure.hasMenu || innerStructure.isReverse) && (
                             <ContentSection>
-                                <h4>Reverse display</h4>
+                                <h4>Menu Size</h4>
+                                <input 
+                                    type="number"
+                                    min="32"
+                                    max="96"
+                                    value={innerStructure.menuSize}
+                                    onChange={this.handleOnMenuSizeChange}
+                                />
+                            </ContentSection>
+                        )}
+                        {(innerStructure.hasMenu || innerStructure.isReverse) && (
+                            <ContentSection>
+                                <h4>Reverse</h4>
                                 <input 
                                     type="checkbox" 
                                     checked={innerStructure.isReverse} 

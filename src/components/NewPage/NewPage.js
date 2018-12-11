@@ -23,8 +23,8 @@ export default class NewPage extends Component {
     handleNewPageChange = e => {
         const { name, value } = e.target;
         this.setState(prevState => ({
-            prevState,
-          [name]: value
+            ...prevState,
+            [name]: value
         }));
     };
 
@@ -41,7 +41,7 @@ export default class NewPage extends Component {
 
     componentDidMount() {
         this.setState(prevState => ({
-            prevState,
+            ...prevState,
             id: this.props.user._id
         }));
     }

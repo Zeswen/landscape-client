@@ -1,22 +1,27 @@
 import React from 'react';
 
-import { HeaderContainer, LogoText, LogoImage } from './PageHeader.styled'
+import { HeaderContainer, LogoText, LogoImage, BurgerMenu } from './PageHeader.styled'
 
 const PageHeader = props => (
+    //@TODO: Input on logo text. P on start, onclick input
+    //@TODO: Logo image via cloudinary
+    //@TODO: Functional burger menu
+    //@TODO: Lis to sections on burger menu
+    
     <HeaderContainer
         position={props.position}
         backgroundColor={props.backgroundColor}
         fontSize={props.fontSize}
         fontFamily={props.fontFamily}
         color={props.color}
+        hasMenu={props.hasMenu}
         isReverse={props.isReverse}
-        hasBurguerMenu={props.hasBurguerMenu}
     >
-        {props.imageUrl
-            ? <LogoImage src={props.imageUrl} alt="logo" />
+        {props.imgUrl
+            ? <LogoImage src={props.imgUrl} alt="logo" />
             : <LogoText>{props.title}</LogoText>
         }
-        {props.hasBurguerMenu && <span>|||</span>}
+        {props.hasMenu && <BurgerMenu menuSize={props.menuSize} src={require('../../../../images/menu.png')} alt='burgerMenu' />}
     </HeaderContainer>
 );
 

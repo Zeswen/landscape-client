@@ -6,12 +6,16 @@ const POSITION_TO_FLEX = {
     right: 'flex-end',
 };
 
+export const BurgerMenu = styled.img`
+    width: ${({ menuSize }) => menuSize}px;
+`;
+
 export const HeaderContainer = styled.div`
     padding: 0.5rem 1rem;
     height: 70px;
     display: flex;
     flex-direction: ${({ isReverse }) => (isReverse ? 'row-reverse' : 'row')};
-    justify-content: ${({ hasBurguerMenu, position }) => hasBurguerMenu
+    justify-content: ${({ hasMenu, position }) => hasMenu
         ? 'space-between'
         : POSITION_TO_FLEX[position]
     };
@@ -21,8 +25,8 @@ export const HeaderContainer = styled.div`
     font-family: ${({ fontFamily }) => fontFamily};
     color: ${({ color }) => color};
 
-    ${({ hasBurguerMenu, position }) => (
-        hasBurguerMenu && 
+    ${({ hasMenu, position }) => (
+        hasMenu && 
         position === 'center' && 
         `&::before {
             content: '';
@@ -32,8 +36,10 @@ export const HeaderContainer = styled.div`
 
 export const LogoText = styled.p`
     font-weight: bold;
+    margin: 0;
 `;
 
 export const LogoImage = styled.img`
     height: 100%;
 `;
+

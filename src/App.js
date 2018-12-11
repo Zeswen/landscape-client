@@ -29,7 +29,7 @@ class App extends Component {
 
     getUser = user => {
         this.setState(prevState => ({
-            prevState,
+            ...prevState,
             user
         }));
     };
@@ -38,7 +38,7 @@ class App extends Component {
         this.service.loggedin()
             .then(user => {
                 this.setState(prevState => ({
-                    prevState,
+                    ...prevState,
                     user
                 }));
             })
@@ -48,7 +48,7 @@ class App extends Component {
         this.service.loggedin()
             .then(user => {
                 this.setState(prevState => ({
-                    prevState,
+                    ...prevState,
                     user
                 }));
             })
@@ -58,7 +58,7 @@ class App extends Component {
         this.service.logout()
             .then(() => {
                 this.setState(prevState => ({
-                    prevState,
+                    ...prevState,
                     user: null
                 }));
             })

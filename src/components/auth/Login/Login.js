@@ -20,7 +20,7 @@ export default class Login extends Component {
     handleLoginChange = e => {
         const { name, value } = e.target;
         this.setState(prevState => ({
-            prevState,
+            ...prevState,
           [name]: value
         }));
     };
@@ -36,7 +36,7 @@ export default class Login extends Component {
             })
             .catch(err => {
                 this.setState(prevState => ({
-                    prevState,
+                    ...prevState,
                     err: err.message
                 }));
             })
