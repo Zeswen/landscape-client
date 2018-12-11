@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+    flex-wrap: wrap;
 `;

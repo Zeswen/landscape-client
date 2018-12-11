@@ -19,10 +19,10 @@ export default class Login extends Component {
 
     handleLoginChange = e => {
         const { name, value } = e.target;
-        this.setState({
-          ...this.state,
+        this.setState(prevState => ({
+            prevState,
           [name]: value
-        });
+        }));
     };
 
     handleLoginSubmit = e => {
@@ -35,10 +35,10 @@ export default class Login extends Component {
                 this.props.history.push({pathname: '/'})
             })
             .catch(err => {
-                this.setState({
-                    ...this.state,
+                this.setState(prevState => ({
+                    prevState,
                     err: err.message
-                })
+                }));
             })
     }
   

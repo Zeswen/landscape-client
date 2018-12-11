@@ -18,10 +18,10 @@ export default class Signup extends Component {
 
     handleRegisterChange = e => {
         const { name, value } = e.target;
-        this.setState({
-          ...this.state,
+        this.setState(prevState => ({
+            prevState,
           [name]: value
-        });
+        }));
     };
 
     handleRegisterSubmit = e => {

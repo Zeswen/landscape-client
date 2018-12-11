@@ -12,8 +12,6 @@ export default class NewPage extends Component {
             id: ''
         }
     }
-    
-
 
     service = new PageService();
 
@@ -24,10 +22,10 @@ export default class NewPage extends Component {
 
     handleNewPageChange = e => {
         const { name, value } = e.target;
-        this.setState({
-          ...this.state,
+        this.setState(prevState => ({
+            prevState,
           [name]: value
-        });
+        }));
     };
 
     handleNewPageSubmit = e => {
@@ -36,16 +34,18 @@ export default class NewPage extends Component {
 
         this.service.newPage(title, id)
             .then(() => {
+                this.props.getUpdatedPages();
                 this.props.history.push({pathname: '/'})
             })
     }
 
     componentDidMount() {
-        this.setState({
-            ...this.state,
+        this.setState(prevState => ({
+            prevState,
             id: this.props.user._id
-        })
+        }));
     }
+
   
     render() {
         return (

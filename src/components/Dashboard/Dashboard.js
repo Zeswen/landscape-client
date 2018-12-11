@@ -3,22 +3,27 @@ import { Link } from 'react-router-dom';
 
 import { DashboardWrapper } from './Dashboard.styled';
 
+import Navbar from '../Navbar';
+
 export default class Dashboard extends Component {
     render() {
         return (
-            <DashboardWrapper>
-                {
-                this.props.user.pages.map(elem => (
-                    <div key={elem._id}className="card" style={{width: "18rem"}}>
-                        <Link to={`/pages/${elem._id}`} ><img className="card-img-top" src={require('../../images/projects.png')} alt="Card imagecap" /></Link>
-                        <div className="card-body" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "space-evenly"}}>
-                            <h5 className="card-title">{elem.title}</h5>
-                            <Link to={`/pages/${elem._id}/edit`} className="btn btn-primary">Edit</Link>
+            <React.Fragment>
+                <Navbar {...this.props} />
+                <DashboardWrapper>
+                    {
+                    this.props.user.pages.map(elem => (
+                        <div key={elem._id}className="card" style={{width: "18rem"}}>
+                            <Link to={`/pages/${elem._id}`} ><img className="card-img-top" src={require('../../images/projects.png')} alt="Card imagecap" /></Link>
+                            <div className="card-body" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "space-evenly"}}>
+                                <h5 className="card-title">{elem.title}</h5>
+                                <Link to={`/pages/${elem._id}/edit`} className="btn btn-primary">Edit</Link>
+                            </div>
                         </div>
-                    </div>
-                ))
-                }
-            </DashboardWrapper>
+                    ))
+                    }
+                </DashboardWrapper>
+            </React.Fragment>
     )
   }
 }

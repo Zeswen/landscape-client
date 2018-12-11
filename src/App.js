@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
-
-import { LandingNav, NewProjectButton, NavUl, NavLi } from './App.styled';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from './components/Home';
 import AuthService from './utils/AuthService';
@@ -11,6 +8,7 @@ import Login from './components/auth/Login';
 import Dashboard from './components/Dashboard';
 import NewPage from './components/NewPage';
 import Page from './components/Page';
+import Editor from './components/Editor';
 
 class App extends Component {
 
@@ -30,60 +28,45 @@ class App extends Component {
     backHome = () => this.props.history.push('/');
 
     getUser = user => {
-        this.setState({
-            ...this.state,
+        this.setState(prevState => ({
+            prevState,
             user
-        });
+        }));
     };
+
+    getUpdatedPages = () => {
+        this.service.loggedin()
+            .then(user => {
+                this.setState(prevState => ({
+                    prevState,
+                    user
+                }));
+            })
+    }
 
     isLoggedIn = () => {
         this.service.loggedin()
             .then(user => {
-                this.setState({
-                    ...this.state,
+                this.setState(prevState => ({
+                    prevState,
                     user
-                })
+                }));
             })
     }
 
     logout = () => {
         this.service.logout()
             .then(() => {
-                this.setState({
-                    ...this.state,
+                this.setState(prevState => ({
+                    prevState,
                     user: null
-                })
+                }));
             })
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="App">
-                <LandingNav>
-                    <img onClick={e => this.backHome(e)} src="" alt="logo"/>
-                    {
-                    this.state.user &&
-                    <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
-                    }
-                    <NavUl>
-                        {
-                        this.state.user
-                        ? (
-                            <React.Fragment>
-                                <NavLi><Link to='/' onClick={this.logout}>Logout</Link></NavLi>
-                            </React.Fragment>
-                        )
-                        : (
-                            <React.Fragment>
-                                <NavLi><Link to='/login'>Log In</Link></NavLi>
-                                <NavLi><Link to='/signup'>Sign Up</Link></NavLi>
-                            </React.Fragment>
-                        )
-                        }
-                        
-                    </NavUl>
-                </LandingNav>
                 <Switch>
                     <Route 
                     exact
@@ -92,7 +75,7 @@ class App extends Component {
                         ? <Redirect to="/" />
                         : (
                             <React.Fragment>
-                                <Home {...e} />
+                                <Home {...e} logout={this.logout} />
                                 <Signup 
                                 {...e}
                                 getUser={this.getUser}
@@ -108,7 +91,7 @@ class App extends Component {
                         ? <Redirect to="/" />
                         : (
                             <React.Fragment>
-                                <Home {...e} />
+                                <Home {...e} logout={this.logout} />
                                 <Login 
                                 {...e}
                                 getUser={this.getUser}
@@ -121,10 +104,11 @@ class App extends Component {
                     path="/newPage"
                     render={e => (
                             <React.Fragment>
-                                <Dashboard {...e} />
+                                <Dashboard {...e} user={this.state.user} logout={this.logout} />
                                 <NewPage 
                                 {...e}
                                 user={this.state.user}
+                                getUpdatedPages={this.getUpdatedPages}
                                 />
                             </React.Fragment>
                     )}
@@ -134,7 +118,18 @@ class App extends Component {
                     path="/pages/:id"
                     render={e => (
                             <React.Fragment>
-                                <Page 
+                                <Page
+                                {...e}
+                                />
+                            </React.Fragment>
+                    )}
+                    />
+                    <Route 
+                    exact
+                    path="/pages/:id/edit"
+                    render={e => (
+                            <React.Fragment>
+                                <Editor 
                                 {...e}
                                 />
                             </React.Fragment>
@@ -143,8 +138,8 @@ class App extends Component {
                     <Route 
                     path="/"
                     render={e => this.state.user
-                    ? <Dashboard {...e} user={this.state.user} />
-                    : <Home {...e} />
+                    ? <Dashboard {...e} user={this.state.user} logout={this.logout} />
+                    : <Home {...e} logout={this.logout} />
                     }
                     />
                 </Switch>

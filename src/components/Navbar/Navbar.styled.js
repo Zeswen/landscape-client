@@ -12,7 +12,7 @@ export const LandingNav = styled.nav`
 `;
 
 export const NewProjectButton = styled.button`
-    margin: 0 auto
+    margin: 0 auto;
 `;
 
 export const NavUl = styled.ul`
