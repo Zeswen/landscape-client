@@ -3,10 +3,6 @@ import React from 'react';
 import { StyledTab, StyledTabContent, ContentSection } from './StructureTab.styled' 
 
 export default class StructureTab extends React.Component {
-    state = {
-        isColorModalOpen: false,
-        isBackgroundColorModalOpen: false,
-    }
 
     handleOnLogoChange = (event) => {
         const logo = event.target.files[0];

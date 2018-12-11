@@ -35,6 +35,21 @@ class Editor extends Component {
         }));
     }
 
+    handleChangeSection = (fieldName, value) => {
+        this.setState(prevState => ({
+            ...prevState,
+            structure: {
+                ...prevState.structure,
+                sections: [
+                    ...prevState.structure.sections,
+                    {
+                        [fieldName]: value                    
+                    }
+                ] 
+            }
+        }));
+    }
+
     handleSave = () => {
         return this.service.updatePage({ ...this.state })
             .then(res => res.message)
@@ -63,6 +78,7 @@ class Editor extends Component {
                     <SidebarBody 
                     structure={this.state.structure} 
                     handleChangeHeader={this.handleChangeHeader}
+                    handleChangeSection={this.handleChangeSection}
                     fonts={this.state.fonts}
                     colors={this.state.colors}
                     />
