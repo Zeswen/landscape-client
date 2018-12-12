@@ -16,6 +16,8 @@ export const EditorContainer = styled.div`
 export const ViewContainer = styled.div`
   width: 375px;
   height: 667px;
+  border-radius: 10px;
+  overflow: hidden;
   background-color: #fff;
 `;
 
