@@ -1,32 +1,35 @@
 import styled from 'styled-components';
 
 const POSITION_TO_FLEX = {
-    left: 'flex-start',
+    top: 'flex-start',
     center: 'center',
-    right: 'flex-end',
+    bottom: 'flex-end',
 };
 
 export const SectionContainer = styled.div`
     padding: 0.5rem 1rem;
-    height: 70px;
     display: flex;
-    flex-direction: ${({ isReverse }) => (isReverse ? 'row-reverse' : 'row')};
-    justify-content: ${({ hasMenu, position }) => hasMenu
-        ? 'space-between'
-        : POSITION_TO_FLEX[position]
-    };
     align-items: center;
     background-color: ${({ backgroundColor }) => backgroundColor};
-    font-size: ${({ fontSize }) => fontSize}px;
-    font-family: ${({ fontFamily }) => fontFamily};
-    color: ${({ color }) => color};
-
-    ${({ hasMenu, position }) => (
-        hasMenu && 
-        position === 'center' && 
-        `&::before {
-            content: '';
-        }`
-    )};
+    justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
+    height: ${({ height }) => height}px;
+    text-align: ${({ textAlign }) => textAlign};
+    flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
 `;
 
+export const TitleText = styled.p`
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    font-size: ${({ titleFontSize }) => titleFontSize}px;
+    font-family: ${({ titleFontFamily }) => titleFontFamily};
+    color: ${({ titleColor }) => titleColor};
+`;
+
+export const DescriptionText = styled.p`
+    margin: 0;
+    display: flex;
+    font-size: ${({ descriptionFontSize }) => descriptionFontSize}px;
+    font-family: ${({ descriptionFontFamily }) => descriptionFontFamily};
+    color: ${({ descriptionColor }) => descriptionColor};
+`;

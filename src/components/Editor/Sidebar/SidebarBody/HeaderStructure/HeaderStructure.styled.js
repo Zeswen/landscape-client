@@ -10,8 +10,13 @@ export const StyledTabContent = styled.div`
     padding: 0 0.5rem;
 `;
 
+export const StyledTitle = styled.h1`
+    text-align: center;
+    font-size: 24px;
+`
+
 export const ContentSection = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 `;

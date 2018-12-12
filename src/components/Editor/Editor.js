@@ -35,19 +35,43 @@ class Editor extends Component {
         }));
     }
 
-    handleChangeSection = (fieldName, value) => {
+    handleChangeSection = (fieldName, value, id) => {
+        let sections = [...this.state.structure.sections]
+        let section = sections.find(elem => elem.id === id);
+
+        sections[sections.indexOf(section)] = {
+            ...section,
+            [fieldName]: value
+        }
+
+        this.setState(prevState => ({
+            ...prevState,
+            structure: {
+                ...prevState.structure,
+                sections: sections
+            }
+        }));
+    }
+
+    handleAddSection = (id) => {
+        let section = this.state.structure.sections.find(elem => elem.id === id);
+
+        let newSection = (section === undefined)
+        ? {...this.state.structure.sections[this.state.structure.sections.length - 1]}
+        : {...this.state.structure.sections[this.state.structure.sections.indexOf(section)]}
+
+        newSection.id++;
+
         this.setState(prevState => ({
             ...prevState,
             structure: {
                 ...prevState.structure,
                 sections: [
                     ...prevState.structure.sections,
-                    {
-                        [fieldName]: value                    
-                    }
-                ] 
+                    newSection
+                ]
             }
-        }));
+        }))
     }
 
     handleSave = () => {
@@ -79,6 +103,7 @@ class Editor extends Component {
                     structure={this.state.structure} 
                     handleChangeHeader={this.handleChangeHeader}
                     handleChangeSection={this.handleChangeSection}
+                    handleAddSection={this.handleAddSection}
                     fonts={this.state.fonts}
                     colors={this.state.colors}
                     />

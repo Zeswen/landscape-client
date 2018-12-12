@@ -1,5 +1,6 @@
 import React from 'react';
-import StructureTab from './StructureTab';
+import HeaderStructure from './HeaderStructure';
+import SectionStructure from './SectionStructure';
 
 export default class SidebarBody extends React.Component {
     state = {
@@ -17,42 +18,41 @@ export default class SidebarBody extends React.Component {
     }
 
     render() {
-        const { structure, fonts, colors, handleChangeHeader, handleChangeSection } = this.props;
+        const { structure, fonts, handleChangeHeader, handleChangeSection, handleAddSection } = this.props;
         const { openTab } = this.state;
-
         return ( 
             <React.Fragment>
             {structure.header && (
-                <StructureTab 
-                    title="Header" 
+                <HeaderStructure 
                     isOpen={openTab === 'Header'} 
                     onClickTab={this.handleOnClickTab}
+                    handleOnChange={handleChangeHeader}
+                    title="Header" 
                     innerStructure={structure.header}
                     fonts={fonts}
-                    colors={colors}
-                    handleOnChange={handleChangeHeader}
                 />
             )}
             {(structure.sections || []).map((section, index) => (
-                <StructureTab 
+                <SectionStructure 
                     key={index} 
-                    title={`Section ${index+1}`} 
                     isOpen={openTab === `Section ${index+1}`}
                     onClickTab={this.handleOnClickTab} 
+                    handleOnChange={handleChangeSection}
+                    handleAddSection={handleAddSection}
+                    title={`Section ${index+1}`} 
                     innerStructure={section}
                     fonts={fonts}
-                    colors={colors}
-                    handleOnChange={handleChangeSection}
                 />
             ))}
+            <button onClick={handleAddSection}>Add Section</button>
         {structure.footer && (
-            <StructureTab 
-                title="Footer" 
+            <HeaderStructure 
                 isOpen={openTab === 'Footer'} 
-                onClickTab={this.handleOnClickTab} 
+                onClickTab={this.handleOnClickTab}
+                // handleOnChange={handleChangeFooter}
+                title="Footer" 
                 innerStructure={structure.footer}
                 fonts={fonts}
-                colors={colors}
             />
         )}
         </React.Fragment>

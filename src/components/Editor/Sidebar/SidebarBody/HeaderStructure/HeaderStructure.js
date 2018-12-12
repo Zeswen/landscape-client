@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { StyledTab, StyledTabContent, ContentSection } from './StructureTab.styled' 
+import { StyledTab, StyledTabContent, StyledTitle, ContentSection } from './HeaderStructure.styled' 
 
-export default class StructureTab extends React.Component {
+export default class HeaderStructure extends React.Component {
 
     handleOnLogoChange = (event) => {
         const logo = event.target.files[0];
@@ -49,20 +49,6 @@ export default class StructureTab extends React.Component {
         this.props.handleOnChange('backgroundColor', backgroundColor);
     }
 
-    handleOnColorBoxClick = () => {
-        this.setState(prevState => ({
-            isColorModalOpen: !prevState.isColorModalOpen,
-            isBackgroundColorModalOpen: false,
-        }));
-    }
-
-    handleOnBackgroundColorBoxClick = () => {
-        this.setState(prevState => ({
-            isBackgroundColorModalOpen: !prevState.isBackgroundColorModalOpen,
-            isColorModalOpen: false,
-        }));
-    }
-
     render() {
         const { onClickTab, title, fonts, isOpen, innerStructure } = this.props;
 
@@ -75,31 +61,10 @@ export default class StructureTab extends React.Component {
                 </StyledTab>
                 {isOpen && (
                     <StyledTabContent>
+                        <StyledTitle>Container</StyledTitle>
                         <ContentSection>
                             <h4>Logo</h4>
                             <input type='file' onChange={this.handleOnLogoChange} disabled />
-                        </ContentSection>
-                        <ContentSection>
-                            <h4>Font Family</h4>
-                            <select onChange={this.handleOnFontFamilyChange} value={innerStructure.fontFamily}>
-                                {fonts.map(font => (
-                                    <option key={font} value={font}>{font}</option>
-                                ))}
-                            </select>
-                        </ContentSection>
-                        <ContentSection>
-                            <h4>Font Size</h4>
-                            <input 
-                                type="number" 
-                                min="16"
-                                max="48"
-                                value={innerStructure.fontSize} 
-                                onChange={this.handleOnFontSizeChange}
-                            />
-                        </ContentSection>
-                        <ContentSection>
-                            <h4>Color</h4>
-                            <input type="color" onChange={this.handleOnColorClick} value={innerStructure.color} />
                         </ContentSection>
                         <ContentSection>
                             <h4>BG Color</h4>
@@ -151,6 +116,29 @@ export default class StructureTab extends React.Component {
                                 />
                             </ContentSection>
                         )}
+                        <StyledTitle>Title</StyledTitle>
+                        <ContentSection>
+                            <h4>Font Family</h4>
+                            <select onChange={this.handleOnFontFamilyChange} value={innerStructure.fontFamily}>
+                                {fonts.map(font => (
+                                    <option key={font} value={font}>{font}</option>
+                                ))}
+                            </select>
+                        </ContentSection>
+                        <ContentSection>
+                            <h4>Font Size</h4>
+                            <input 
+                                type="number" 
+                                min="16"
+                                max="48"
+                                value={innerStructure.fontSize} 
+                                onChange={this.handleOnFontSizeChange}
+                            />
+                        </ContentSection>
+                        <ContentSection>
+                            <h4>Color</h4>
+                            <input type="color" onChange={this.handleOnColorClick} value={innerStructure.color} />
+                        </ContentSection>
                     </StyledTabContent>
                 )}
             </React.Fragment>

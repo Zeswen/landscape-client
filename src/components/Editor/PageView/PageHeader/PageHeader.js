@@ -8,14 +8,15 @@ const PageHeader = props => (
     //@TODO: Functional burger menu
     //@TODO: Lis to sections on burger menu
     
+
     <HeaderContainer
-        position={props.position}
         backgroundColor={props.backgroundColor}
-        fontSize={props.fontSize}
-        fontFamily={props.fontFamily}
-        color={props.color}
+        position={props.position}
         hasMenu={props.hasMenu}
         isReverse={props.isReverse}
+        fontFamily={props.fontFamily}
+        fontSize={props.fontSize}
+        color={props.color}
     >
         {props.imgUrl
             ? <LogoImage src={props.imgUrl} alt="logo" />
