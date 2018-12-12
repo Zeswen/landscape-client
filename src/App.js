@@ -71,13 +71,13 @@ class App extends Component {
                     <Route 
                     exact
                     path="/signup"
-                    render={e => this.state.user
+                    render={routerProps => this.state.user
                         ? <Redirect to="/" />
                         : (
                             <React.Fragment>
-                                <Home {...e} logout={this.logout} />
+                                <Home {...routerProps} logout={this.logout} />
                                 <Signup 
-                                {...e}
+                                {...routerProps}
                                 getUser={this.getUser}
                                 />
                             </React.Fragment>
@@ -87,13 +87,13 @@ class App extends Component {
                     <Route 
                     exact
                     path="/login"
-                    render={e => this.state.user
+                    render={routerProps => this.state.user
                         ? <Redirect to="/" />
                         : (
                             <React.Fragment>
-                                <Home {...e} logout={this.logout} />
+                                <Home {...routerProps} logout={this.logout} />
                                 <Login 
-                                {...e}
+                                {...routerProps}
                                 getUser={this.getUser}
                                 />
                             </React.Fragment>
@@ -102,11 +102,11 @@ class App extends Component {
                     <Route 
                     exact
                     path="/newPage"
-                    render={e => (
+                    render={routerProps => (
                             <React.Fragment>
-                                <Dashboard {...e} user={this.state.user} logout={this.logout} />
+                                <Dashboard {...routerProps} user={this.state.user} logout={this.logout} />
                                 <NewPage 
-                                {...e}
+                                {...routerProps}
                                 user={this.state.user}
                                 getUpdatedPages={this.getUpdatedPages}
                                 />
@@ -116,10 +116,10 @@ class App extends Component {
                     <Route 
                     exact
                     path="/pages/:id"
-                    render={e => (
+                    render={routerProps => (
                             <React.Fragment>
                                 <Page
-                                {...e}
+                                {...routerProps}
                                 />
                             </React.Fragment>
                     )}
@@ -127,19 +127,19 @@ class App extends Component {
                     <Route 
                     exact
                     path="/pages/:id/edit"
-                    render={e => (
+                    render={routerProps => (
                             <React.Fragment>
                                 <Editor 
-                                {...e}
+                                {...routerProps}
                                 />
                             </React.Fragment>
                     )}
                     />
                     <Route 
                     path="/"
-                    render={e => this.state.user
-                    ? <Dashboard {...e} user={this.state.user} logout={this.logout} />
-                    : <Home {...e} logout={this.logout} />
+                    render={routerProps => this.state.user
+                    ? <Dashboard {...routerProps} user={this.state.user} logout={this.logout} />
+                    : <Home {...routerProps} logout={this.logout} />
                     }
                     />
                 </Switch>

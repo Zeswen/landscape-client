@@ -6,6 +6,7 @@ const PageSections = props => (
     <React.Fragment>
         {props && Object.values(props).map((section, index) => (
             <SectionContainer
+            id={`section-${index+1}`}
             key={index}
             backgroundColor={section.backgroundColor}
             position={section.position}
