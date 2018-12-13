@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledTab, StyledTabContent, StyledTitle, ContentSection } from './FooterStructure.styled' 
+import { StyledTab, StyledTabContent, StyledTitle, ContentSection, SocialContentSection, SocialMedias, SocialMedia, SocialInput } from './FooterStructure.styled' 
 
 export default class FooterStructure extends React.Component {
     
@@ -69,9 +69,23 @@ export default class FooterStructure extends React.Component {
         this.props.handleOnChange('ownerColor', ownerColor);
     }
 
+    isSocialActive = (event) => {
+        return (typeof event === 'string')
+        ? this.props.innerStructure.social && this.props.innerStructure.social.find(e=>e.name===event).active
+        : this.props.innerStructure.social && this.props.innerStructure.social.find(e=>e.name===event.target.name).active;
+    } 
+
+    handleOnSocialActiveClick = (event) => {
+        this.props.handleOnSocialChange(event.target.name, 'active', !this.isSocialActive(event));
+    }
+
+    handleOnSocialUrlChange = (event) => {
+        const url = event.target.value;
+        this.props.handleOnSocialChange(event.target.name, 'url', url);
+    }
+
     render() {
         const { onClickTab, title, fonts, isOpen, innerStructure } = this.props;
-
         return (
             <React.Fragment>
                 <StyledTab 
@@ -106,8 +120,8 @@ export default class FooterStructure extends React.Component {
                             <h4>Height</h4>
                             <input 
                                 type="number" 
-                                min="60"
-                                max="180"
+                                min="80"
+                                max="160"
                                 value={innerStructure.height} 
                                 onChange={this.handleOnHeightChange}
                             />
@@ -188,7 +202,7 @@ export default class FooterStructure extends React.Component {
                             <input 
                                 type="number" 
                                 min="6"
-                                max="48"
+                                max="32"
                                 value={innerStructure.ownerFontSize} 
                                 onChange={this.handleOnOwnerFontSizeChange}
                             />
@@ -197,8 +211,22 @@ export default class FooterStructure extends React.Component {
                             <h4>Color</h4>
                             <input type="color" onChange={this.handleOnOwnerColorClick} value={innerStructure.ownerColor} />
                         </ContentSection>
+                        <SocialContentSection>
+                            <SocialMedias>
+                                <SocialMedia name='Facebook' src='https://res.cloudinary.com/dk4iqakns/image/upload/v1544715901/landscape/fb_icon_325x325.png' alt='Facebook' isActive={this.isSocialActive} onClick={this.handleOnSocialActiveClick} />
+                                <SocialMedia name='Twitter' src='https://res.cloudinary.com/dk4iqakns/image/upload/v1544715911/landscape/zRim1x6M.jpg' alt='Twitter' isActive={this.isSocialActive} onClick={this.handleOnSocialActiveClick} />
+                                <SocialMedia name='Instagram' src='https://res.cloudinary.com/dk4iqakns/image/upload/v1544715906/landscape/unnamed.png' alt='Instagram' isActive={this.isSocialActive} onClick={this.handleOnSocialActiveClick} />
+                            </SocialMedias>
+                            {innerStructure.social.map((elem, i) => (
+                                elem.active && <SocialInput
+                                key={i}
+                                value={elem.url}
+                                name={elem.name}
+                                onChange={this.handleOnSocialUrlChange}
+                                />
+                            ))}
+                        </SocialContentSection>
                     </StyledTabContent>
-                    
                 )}
             </React.Fragment>
         );

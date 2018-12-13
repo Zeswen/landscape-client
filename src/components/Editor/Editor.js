@@ -87,6 +87,27 @@ class Editor extends Component {
         }));
     }
 
+    handleFooterSocialChange = (name, fieldName, value) => {
+        let social = this.state.structure.footer.social;
+        let socialField = social.find(elem => elem.name === name);
+
+        social[social.indexOf(socialField)] = {
+            ...socialField,
+            [fieldName]: value
+        }
+
+        this.setState(prevState => ({
+            ...prevState,
+            structure: {
+                ...prevState.structure,
+                footer: {
+                ...prevState.structure.footer,
+                social: social
+                }
+            }
+        }))
+    }
+
     handleSave = () => {
         return this.service.updatePage({ ...this.state })
             .then(res => res.message)
@@ -118,6 +139,7 @@ class Editor extends Component {
                     handleChangeSection={this.handleChangeSection}
                     handleAddSection={this.handleAddSection}
                     handleChangeFooter={this.handleChangeFooter}
+                    handleFooterSocialChange={this.handleFooterSocialChange}
                     fonts={this.state.fonts}
                     colors={this.state.colors}
                     />

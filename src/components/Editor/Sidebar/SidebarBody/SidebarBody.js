@@ -19,7 +19,7 @@ export default class SidebarBody extends React.Component {
     }
 
     render() {
-        const { structure, fonts, handleChangeHeader, handleChangeSection, handleAddSection, handleChangeFooter } = this.props;
+        const { structure, fonts, handleChangeHeader, handleChangeSection, handleAddSection, handleChangeFooter, handleFooterSocialChange } = this.props;
         const { openTab } = this.state;
         return ( 
             <React.Fragment>
@@ -51,6 +51,7 @@ export default class SidebarBody extends React.Component {
                 isOpen={openTab === 'Footer'} 
                 onClickTab={this.handleOnClickTab}
                 handleOnChange={handleChangeFooter}
+                handleOnSocialChange={handleFooterSocialChange}
                 title="Footer" 
                 innerStructure={structure.footer}
                 fonts={fonts}

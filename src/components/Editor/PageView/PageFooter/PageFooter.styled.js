@@ -32,3 +32,18 @@ export const OwnerMessage = styled.p`
     color: ${({ ownerColor }) => ownerColor};
 `;
 
+export const Social = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`;
+
+export const SocialImg = styled.img`
+    margin: 1rem 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
