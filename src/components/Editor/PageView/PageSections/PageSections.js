@@ -11,6 +11,8 @@ const PageSections = props => (
             backgroundColor={section.backgroundColor}
             position={section.position}
             height={section.height}
+            paddingV={section.paddingV}
+            paddingH={section.paddingH}
             textAlign={section.textAlign}
             isReverse={section.isReverse}
             >

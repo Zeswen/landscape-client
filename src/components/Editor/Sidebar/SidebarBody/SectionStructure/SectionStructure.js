@@ -24,6 +24,16 @@ export default class SectionStructure extends React.Component {
         this.props.handleOnChange('height', height, this.props.innerStructure.id);
     }
     
+    handleOnPaddingVChange = (event) => {
+        const paddingV = event.target.value;
+        this.props.handleOnChange('paddingV', paddingV, this.props.innerStructure.id);
+    }
+
+    handleOnPaddingHChange = (event) => {
+        const paddingH = event.target.value;
+        this.props.handleOnChange('paddingH', paddingH, this.props.innerStructure.id);
+    }
+
     handleOnReverseChange = (event) => {
         const isReverse = event.target.checked;
         this.props.handleOnChange('isReverse', isReverse, this.props.innerStructure.id);
@@ -92,6 +102,25 @@ export default class SectionStructure extends React.Component {
                                 value={innerStructure.height} 
                                 onChange={this.handleOnHeightChange}
                             />
+                        </ContentSection>
+                        <ContentSection>
+                            <h4>Padding</h4>
+                            <div>
+                                <input 
+                                    type="number" 
+                                    min="0"
+                                    max="32"
+                                    value={innerStructure.paddingV} 
+                                    onChange={this.handleOnPaddingVChange}
+                                />
+                                <input 
+                                    type="number" 
+                                    min="0"
+                                    max="32"
+                                    value={innerStructure.paddingH} 
+                                    onChange={this.handleOnPaddingHChange}
+                                />
+                            </div>
                         </ContentSection>
                         <ContentSection>
                             <h4>Text Align</h4>

@@ -6,6 +6,7 @@ export const PageContainer = styled.div`
     overflow-y: overlay;
     padding-right: 17px;
     box-sizing: content-box;
+    cursor: ns-resize;
 
     /* :hover {
         cursor: -webkit-grab;

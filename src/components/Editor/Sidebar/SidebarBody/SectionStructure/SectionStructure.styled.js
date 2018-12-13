@@ -4,6 +4,7 @@ export const StyledTab = styled.div`
     height: 40px;
     border: 1px solid black;
     width: 100%;
+    cursor: pointer;
 `;
 
 export const StyledTabContent = styled.div`

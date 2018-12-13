@@ -13,6 +13,7 @@ export const SectionContainer = styled.div`
     background-color: ${({ backgroundColor }) => backgroundColor};
     justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
+    padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     text-align: ${({ textAlign }) => textAlign};
     flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
 `;

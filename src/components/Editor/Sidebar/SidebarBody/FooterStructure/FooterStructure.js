@@ -1,13 +1,8 @@
 import React from 'react';
 
-import { StyledTab, StyledTabContent, StyledTitle, ContentSection } from './HeaderStructure.styled' 
+import { StyledTab, StyledTabContent, StyledTitle, ContentSection } from './FooterStructure.styled' 
 
-export default class HeaderStructure extends React.Component {
-    
-    handleOnLogoChange = (event) => {
-        const logo = event.target.files[0];
-        this.props.handleOnChange('imgUrl', logo);
-    }
+export default class FooterStructure extends React.Component {
     
     handleOnBackgroundColorClick = (event) => {
         const backgroundColor = event.target.value;
@@ -34,34 +29,44 @@ export default class HeaderStructure extends React.Component {
         this.props.handleOnChange('paddingH', paddingH);
     }
 
-    handleOnBurguerChange = (event) => {
-        const hasMenu = event.target.checked;
-        this.props.handleOnChange('hasMenu', hasMenu);
-    }
-
-    handleOnMenuSizeChange = (event) => {
-        const menuSize = event.target.value;
-        this.props.handleOnChange('menuSize', menuSize);
-    }
-    
     handleOnReverseChange = (event) => {
         const isReverse = event.target.checked;
         this.props.handleOnChange('isReverse', isReverse);
     }
 
-    handleOnFontFamilyChange = (event) => {
-        const fontFamily = event.target.value;
-        this.props.handleOnChange('fontFamily', fontFamily);
+    handleOnCopyrightChange = (event) => {
+        const hasCopyright = event.target.checked;
+        this.props.handleOnChange('hasCopyright', hasCopyright);
+    }
+    
+    handleOnCopyrightFontFamilyChange = (event) => {
+        const copyrightFontFamily = event.target.value;
+        this.props.handleOnChange('copyrightFontFamily', copyrightFontFamily);
     }
 
-    handleOnFontSizeChange = (event) => {
-        const fontSize = event.target.value;
-        this.props.handleOnChange('fontSize', fontSize);
+    handleOnCopyrightFontSizeChange = (event) => {
+        const copyrightFontSize = event.target.value;
+        this.props.handleOnChange('copyrightFontSize', copyrightFontSize);
     }
 
-    handleOnColorClick = (event) => {
-        const color = event.target.value;
-        this.props.handleOnChange('color', color);
+    handleOnCopyrightColorClick = (event) => {
+        const copyrightColor = event.target.value;
+        this.props.handleOnChange('copyrightColor', copyrightColor);
+    }
+    
+    handleOnOwnerFontFamilyChange = (event) => {
+        const ownerFontFamily = event.target.value;
+        this.props.handleOnChange('ownerFontFamily', ownerFontFamily);
+    }
+
+    handleOnOwnerFontSizeChange = (event) => {
+        const ownerFontSize = event.target.value;
+        this.props.handleOnChange('ownerFontSize', ownerFontSize);
+    }
+
+    handleOnOwnerColorClick = (event) => {
+        const ownerColor = event.target.value;
+        this.props.handleOnChange('ownerColor', ownerColor);
     }
 
     render() {
@@ -77,10 +82,6 @@ export default class HeaderStructure extends React.Component {
                 {isOpen && (
                     <StyledTabContent>
                         <StyledTitle>Container</StyledTitle>
-                        <ContentSection>
-                            <h4>Logo</h4>
-                            <input type='file' onChange={this.handleOnLogoChange} disabled />
-                        </ContentSection>
                         <ContentSection>
                             <h4>BG Color</h4>
                             <input type="color" onChange={this.handleOnBackgroundColorClick} value={innerStructure.backgroundColor} />
@@ -127,43 +128,56 @@ export default class HeaderStructure extends React.Component {
                                     max="32"
                                     value={innerStructure.paddingH} 
                                     onChange={this.handleOnPaddingHChange}
-                                />
+                                    />
                             </div>
                         </ContentSection>
                         <ContentSection>
-                            <h4>Menu</h4>
+                            <h4>Reverse</h4>
                             <input 
                                 type="checkbox" 
-                                checked={innerStructure.hasMenu} 
-                                onChange={this.handleOnBurguerChange}
+                                checked={innerStructure.isReverse} 
+                                onChange={this.handleOnReverseChange}
                             />
                         </ContentSection>
-                        {(innerStructure.hasMenu || innerStructure.isReverse) && (
-                            <ContentSection>
-                                <h4>Menu Size</h4>
-                                <input 
-                                    type="number"
-                                    min="32"
-                                    max="96"
-                                    value={innerStructure.menuSize}
-                                    onChange={this.handleOnMenuSizeChange}
-                                />
-                            </ContentSection>
+                        <StyledTitle>Copyright</StyledTitle>
+                        <ContentSection>
+                            <h4>Copyright</h4>
+                            <input 
+                                type="checkbox" 
+                                checked={innerStructure.hasCopyright} 
+                                onChange={this.handleOnCopyrightChange}
+                            />
+                        </ContentSection>
+                        {(innerStructure.hasCopyright) && (
+                            <React.Fragment>
+                                <ContentSection>
+                                    <h4>Font Family</h4>
+                                    <select onChange={this.handleOnCopyrightFontFamilyChange} value={innerStructure.copyrightFontFamily}>
+                                        {fonts.map(font => (
+                                            <option key={font} value={font}>{font}</option>
+                                        ))}
+                                    </select>
+                                </ContentSection>
+                                <ContentSection>
+                                    <h4>Font Size</h4>
+                                    <input 
+                                        type="number" 
+                                        min="6"
+                                        max="18"
+                                        value={innerStructure.copyrightFontSize} 
+                                        onChange={this.handleOnCopyrightFontSizeChange}
+                                    />
+                                </ContentSection>
+                                <ContentSection>
+                                    <h4>Color</h4>
+                                    <input type="color" onChange={this.handleOnCopyrightColorClick} value={innerStructure.copyrightColor} />
+                                </ContentSection>
+                            </React.Fragment>
                         )}
-                        {(innerStructure.hasMenu || innerStructure.isReverse) && (
-                            <ContentSection>
-                                <h4>Reverse</h4>
-                                <input 
-                                    type="checkbox" 
-                                    checked={innerStructure.isReverse} 
-                                    onChange={this.handleOnReverseChange}
-                                />
-                            </ContentSection>
-                        )}
-                        <StyledTitle>Title</StyledTitle>
+                        <StyledTitle>Owner</StyledTitle>
                         <ContentSection>
                             <h4>Font Family</h4>
-                            <select onChange={this.handleOnFontFamilyChange} value={innerStructure.fontFamily}>
+                            <select onChange={this.handleOnOwnerFontFamilyChange} value={innerStructure.ownerFontFamily}>
                                 {fonts.map(font => (
                                     <option key={font} value={font}>{font}</option>
                                 ))}
@@ -173,17 +187,18 @@ export default class HeaderStructure extends React.Component {
                             <h4>Font Size</h4>
                             <input 
                                 type="number" 
-                                min="16"
+                                min="6"
                                 max="48"
-                                value={innerStructure.fontSize} 
-                                onChange={this.handleOnFontSizeChange}
+                                value={innerStructure.ownerFontSize} 
+                                onChange={this.handleOnOwnerFontSizeChange}
                             />
                         </ContentSection>
                         <ContentSection>
                             <h4>Color</h4>
-                            <input type="color" onChange={this.handleOnColorClick} value={innerStructure.color} />
+                            <input type="color" onChange={this.handleOnOwnerColorClick} value={innerStructure.ownerColor} />
                         </ContentSection>
                     </StyledTabContent>
+                    
                 )}
             </React.Fragment>
         );

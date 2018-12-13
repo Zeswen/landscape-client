@@ -11,16 +11,17 @@ export const BurgerMenu = styled.img`
 `;
 
 export const HeaderContainer = styled.div`
-    padding: 0.5rem 1rem;
-    height: 70px;
+
     display: flex;
+    align-items: center;
+    background-color: ${({ backgroundColor }) => backgroundColor};
     flex-direction: ${({ isReverse }) => (isReverse ? 'row-reverse' : 'row')};
     justify-content: ${({ hasMenu, position }) => hasMenu
         ? 'space-between'
         : POSITION_TO_FLEX[position]
     };
-    align-items: center;
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    height: ${({ height }) => height}px;
+    padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     font-size: ${({ fontSize }) => fontSize}px;
     font-family: ${({ fontFamily }) => fontFamily};
     color: ${({ color }) => color};

@@ -74,6 +74,19 @@ class Editor extends Component {
         }))
     }
 
+    handleChangeFooter = (fieldName, value) => {
+        this.setState(prevState => ({
+            ...prevState,
+            structure: {
+                ...prevState.structure,
+                footer: {
+                ...prevState.structure.footer,
+                [fieldName]: value
+                }
+            }
+        }));
+    }
+
     handleSave = () => {
         return this.service.updatePage({ ...this.state })
             .then(res => res.message)
@@ -104,6 +117,7 @@ class Editor extends Component {
                     handleChangeHeader={this.handleChangeHeader}
                     handleChangeSection={this.handleChangeSection}
                     handleAddSection={this.handleAddSection}
+                    handleChangeFooter={this.handleChangeFooter}
                     fonts={this.state.fonts}
                     colors={this.state.colors}
                     />

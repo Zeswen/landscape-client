@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderStructure from './HeaderStructure';
 import SectionStructure from './SectionStructure';
+import FooterStructure from './FooterStructure';
 
 export default class SidebarBody extends React.Component {
     state = {
@@ -18,7 +19,7 @@ export default class SidebarBody extends React.Component {
     }
 
     render() {
-        const { structure, fonts, handleChangeHeader, handleChangeSection, handleAddSection } = this.props;
+        const { structure, fonts, handleChangeHeader, handleChangeSection, handleAddSection, handleChangeFooter } = this.props;
         const { openTab } = this.state;
         return ( 
             <React.Fragment>
@@ -46,10 +47,10 @@ export default class SidebarBody extends React.Component {
             ))}
             <button onClick={handleAddSection}>Add Section</button>
         {structure.footer && (
-            <HeaderStructure 
+            <FooterStructure 
                 isOpen={openTab === 'Footer'} 
                 onClickTab={this.handleOnClickTab}
-                // handleOnChange={handleChangeFooter}
+                handleOnChange={handleChangeFooter}
                 title="Footer" 
                 innerStructure={structure.footer}
                 fonts={fonts}

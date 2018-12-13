@@ -12,6 +12,9 @@ const PageHeader = props => (
     <HeaderContainer
         backgroundColor={props.backgroundColor}
         position={props.position}
+        height={props.height}
+        paddingV={props.paddingV}
+        paddingH={props.paddingH}
         hasMenu={props.hasMenu}
         isReverse={props.isReverse}
         fontFamily={props.fontFamily}
