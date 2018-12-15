@@ -37,6 +37,6 @@ export default class AuthService {
 
     loggedin = () => {
         return this.service.get('/loggedin')
-            .then(res => res.data);
+            .then(res => res.data)
     }
 }

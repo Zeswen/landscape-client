@@ -1,19 +1,16 @@
-import React, { Component } from 'react'
-
-import { HomeWrapper } from './Home.styled';
+import React from 'react'
 
 import Navbar from '../Navbar';
 
-export default class Home extends Component {
+import { HomeWrapper } from './Home.styled';
 
-    render() {
-        return (
-            <React.Fragment>
-                <Navbar {...this.props} />
-                <HomeWrapper>
-                    <p>Home</p>
-                </HomeWrapper>
-            </React.Fragment>
-    )
-  }
-}
+const Home = props => (
+    <React.Fragment>
+        <Navbar {...props} />
+        <HomeWrapper>
+            <p>Home</p>
+        </HomeWrapper>
+    </React.Fragment>
+);
+
+export default Home;

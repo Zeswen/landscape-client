@@ -24,5 +24,6 @@ export const ViewContainer = styled.div`
 export const SidebarContainer = styled.div`
   width: 25%;
   min-width: 300px;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
 `;

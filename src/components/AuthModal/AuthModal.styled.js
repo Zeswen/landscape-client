@@ -1,6 +1,11 @@
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
-export const RegisterModal = styled.div`
+const fadein = keyframes`
+    0% { opacity: 0 }
+`;
+
+export const AuthModal = styled.div`
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -10,9 +15,14 @@ export const RegisterModal = styled.div`
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.4);
+    opacity: 100;
+    animation: ${fadein} 0.25s ease-in-out;
 `;
 
-export const RegisterModalBox = styled.div`
+export const AuthModalBox = styled.div`
+    height: 50vh;
+    width: 20vw;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,15 +30,17 @@ export const RegisterModalBox = styled.div`
     background-color: rgba(255, 255, 255, 1);
 `;
 
-export const RegisterModalClose = styled.button`
-    align-self: flex-end;
+export const AuthModalClose = styled.button`
+    position: absolute;
+    top: 0;
+    right: 0;
 
     &:hover {
         cursor: pointer;
     }
 `;
 
-export const RegisterModalForm = styled.form`
+export const AuthModalForm = styled.form`
     padding: 3rem;
     display: flex;
     flex-direction: column;
@@ -36,6 +48,6 @@ export const RegisterModalForm = styled.form`
     align-items: center;
 `;
 
-export const RegisterInput = styled.input`
+export const AuthInput = styled.input`
     margin-bottom: 0.5rem;
 `;

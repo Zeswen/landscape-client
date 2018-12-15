@@ -25,7 +25,7 @@ const PageHeader = props => (
             ? <LogoImage src={props.imgUrl} alt="logo" />
             : <LogoText>{props.title}</LogoText>
         }
-        {props.hasMenu && <BurgerMenu menuSize={props.menuSize} src={require('../../../../images/menu.png')} alt='burgerMenu' />}
+        {props.hasMenu && <BurgerMenu menuSize={props.menuSize} src={require('../../../images/menu.png')} alt='burgerMenu' />}
     </HeaderContainer>
 );
 

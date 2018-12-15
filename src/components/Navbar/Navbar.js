@@ -1,36 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { LandingNav, NewProjectButton, NavUl, NavLi } from './Navbar.styled';
+import { LandingNav, Logo, NewProjectButton, NavUl, NavLi, NavLink } from './Navbar.styled';
 
-export default class Navbar extends Component {
-    backHome = () => this.props.history.push('/');
+const Navbar = props => (
+    <LandingNav>
+        <Logo onClick={() => props.history.push('/')} src={require('../../images/logo.svg')} alt="logo"/>
+        {props.user && (
+            <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
+        )}
+        <NavUl>
+            {props.user
+                ? (
+                    <React.Fragment>
+                        <NavLi>
+                            <NavLink to='/' onClick={props.handleLogout}>Logout</NavLink>
+                        </NavLi>
+                    </React.Fragment>
+                )
+                : (
+                    <React.Fragment>
+                        <NavLi><NavLink to='/login'>Log In</NavLink></NavLi>
+                        <NavLi><NavLink to='/signup'>Sign Up</NavLink></NavLi>
+                    </React.Fragment>
+                )
+            }
+        </NavUl>
+    </LandingNav>
+);
 
-     render() {
-        return (
-            <LandingNav>
-                <img onClick={this.backHome} src="" alt="logo"/>
-                {
-                this.props.user &&
-                <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
-                }
-                <NavUl>
-                    {
-                    this.props.user
-                    ? (
-                        <React.Fragment>
-                            <NavLi><Link to='/' onClick={this.props.logout}>Logout</Link></NavLi>
-                        </React.Fragment>
-                    )
-                    : (
-                        <React.Fragment>
-                            <NavLi><Link to='/login'>Log In</Link></NavLi>
-                            <NavLi><Link to='/signup'>Sign Up</Link></NavLi>
-                        </React.Fragment>
-                    )
-                    }
-                </NavUl>
-            </LandingNav>
-        )
-    }
-}
+export default Navbar;

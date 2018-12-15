@@ -5,4 +5,5 @@ export const DashboardWrapper = styled.div`
     justify-content: space-evenly;
     align-items: space-evenly;
     flex-wrap: wrap;
+    padding-top: 8rem;
 `;

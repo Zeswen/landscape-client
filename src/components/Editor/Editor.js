@@ -1,152 +1,130 @@
 import React, { Component } from 'react';
+import { merge } from 'lodash';
 
+import { BASE_SECTION } from '../../utils/baseDesigns';
 import PageService from '../../utils/PageService';
 
-import { EditorWrapper, EditorContainer, ViewContainer, SidebarContainer } from './Editor.styled';
-import PageView from './PageView';
-import SidebarHeader from './Sidebar/SidebarHeader';
-import SidebarBody from './Sidebar/SidebarBody';
+import {
+  EditorWrapper,
+  EditorContainer,
+  ViewContainer,
+  SidebarContainer
+} from './Editor.styled';
+import PageView from '../PageView';
+import Sidebar from '../Sidebar';
 
 class Editor extends Component {
-    state = {
-        structure: {
-            header: {},
-            sections: [],
-            footer: {}
-        },
-        colors: [],
-        fonts: []
-    }
+  state = {
+    structure: {
+      header: {},
+      sections: [],
+      footer: {}
+    },
+    colors: [],
+    fonts: []
+  };
 
-    message = null;
+  message = null;
 
-    service = new PageService();
+  service = new PageService();
 
-    handleChangeHeader = (fieldName, value) => {
-        this.setState(prevState => ({
-            ...prevState,
-            structure: {
-                ...prevState.structure,
-                header: {
-                ...prevState.structure.header,
-                [fieldName]: value
-                }
+  componentDidMount() {
+    this.service.getPage(this.props.match.params.id)
+        .then(page => {
+            this.setState({ ...page });
+        });
+  }
+
+  getDeepStateChange = (structurePiece, fieldName, value) => ({
+    structure: {
+        [structurePiece]: structurePiece === 'sections'
+            ?  [...value]
+            : {
+                [fieldName]: value,
             }
-        }));
     }
+  }) 
 
-    handleChangeSection = (fieldName, value, id) => {
-        let sections = [...this.state.structure.sections]
-        let section = sections.find(elem => elem.id === id);
+  handleDeepStateChange = (deepStateChange) => {
+    this.setState(prevState => ({
+        ...merge(prevState, deepStateChange)
+    }));
+  }
 
-        sections[sections.indexOf(section)] = {
-            ...section,
-            [fieldName]: value
-        }
+  handleChangeHeader = (fieldName, value) => {
+    const deepStateChange = this.getDeepStateChange('header', fieldName, value);
+    this.handleDeepStateChange(deepStateChange);
+  };
 
-        this.setState(prevState => ({
-            ...prevState,
-            structure: {
-                ...prevState.structure,
-                sections: sections
-            }
-        }));
-    }
+  handleChangeSection = (fieldName, value, id) => {
+    const { sections } = this.state.structure;
+    const newSections = sections.map(section => ({
+        ...section,
+        ...(section.id === id ? { [fieldName]: value } : {}),
+    }));
+    
+    const deepStateChange = this.getDeepStateChange('sections', null, newSections);
+    this.handleDeepStateChange(deepStateChange);
+  };
 
-    handleAddSection = (id) => {
-        let section = this.state.structure.sections.find(elem => elem.id === id);
+  handleAddSection = sectionId => {
+    const { sections } = this.state.structure;
+    const newSection = {
+        ...(sectionId 
+            ? sections.find(elem => elem.id === sectionId) 
+            : BASE_SECTION
+        ),
+        id: sections.length,
+    };
 
-        let newSection = (section === undefined)
-        ? {...this.state.structure.sections[this.state.structure.sections.length - 1]}
-        : {...this.state.structure.sections[this.state.structure.sections.indexOf(section)]}
+    const deepStateChange = this.getDeepStateChange('sections', null, [...sections, newSection]);
+    this.handleDeepStateChange(deepStateChange);
+  };
 
-        newSection.id++;
+  handleChangeFooter = (fieldName, value) => {
+    const deepStateChange = this.getDeepStateChange('footer', fieldName, value);
+    this.handleDeepStateChange(deepStateChange);
+  };
 
-        this.setState(prevState => ({
-            ...prevState,
-            structure: {
-                ...prevState.structure,
-                sections: [
-                    ...prevState.structure.sections,
-                    newSection
-                ]
-            }
-        }))
-    }
+  handleFooterSocialChange = (name, fieldName, value) => {
+    const { social } = this.state.structure.footer;
+    const newSocial = social.map(socialElem => ({
+            ...socialElem,
+            ...(socialElem.name === name ? { [fieldName]: value } : {}),
+    }));
 
-    handleChangeFooter = (fieldName, value) => {
-        this.setState(prevState => ({
-            ...prevState,
-            structure: {
-                ...prevState.structure,
-                footer: {
-                ...prevState.structure.footer,
-                [fieldName]: value
-                }
-            }
-        }));
-    }
+    const deepStateChange = this.getDeepStateChange('footer', 'social', newSocial);
+    this.handleDeepStateChange(deepStateChange);
+  };
 
-    handleFooterSocialChange = (name, fieldName, value) => {
-        let social = this.state.structure.footer.social;
-        let socialField = social.find(elem => elem.name === name);
+  handleSave = () => {
+    return this.service.updatePage({ ...this.state }).then(res => res.message);
+  };
 
-        social[social.indexOf(socialField)] = {
-            ...socialField,
-            [fieldName]: value
-        }
-
-        this.setState(prevState => ({
-            ...prevState,
-            structure: {
-                ...prevState.structure,
-                footer: {
-                ...prevState.structure.footer,
-                social: social
-                }
-            }
-        }))
-    }
-
-    handleSave = () => {
-        return this.service.updatePage({ ...this.state })
-            .then(res => res.message)
-    }
-
-    componentDidMount() {
-        this.service.getPage(this.props.match.params.id)
-            .then(page => {
-                this.setState(prevState => ({
-                    ...prevState,
-                    ...page
-                }));
-            })
-    }
-
-    render() {
-        return (
-            <EditorWrapper>
-                <EditorContainer>
-                    <ViewContainer>
-                        <PageView structure={this.state.structure} />
-                    </ViewContainer>
-                </EditorContainer>
-                <SidebarContainer>
-                    <SidebarHeader handleSave={this.handleSave} />
-                    <SidebarBody 
-                    structure={this.state.structure} 
-                    handleChangeHeader={this.handleChangeHeader}
-                    handleChangeSection={this.handleChangeSection}
-                    handleAddSection={this.handleAddSection}
-                    handleChangeFooter={this.handleChangeFooter}
-                    handleFooterSocialChange={this.handleFooterSocialChange}
-                    fonts={this.state.fonts}
-                    colors={this.state.colors}
-                    />
-                </SidebarContainer>
-            </EditorWrapper>
-        );
-    }
+  render() {
+    return (
+      <EditorWrapper>
+        <EditorContainer>
+          <ViewContainer>
+            <PageView structure={this.state.structure} />
+          </ViewContainer>
+        </EditorContainer>
+        <SidebarContainer>
+          <Sidebar 
+            handleSave={this.handleSave}
+            structure={this.state.structure}
+            handleChangeHeader={this.handleChangeHeader}
+            handleChangeSection={this.handleChangeSection}
+            handleAddSection={this.handleAddSection}
+            handleChangeFooter={this.handleChangeFooter}
+            handleFooterSocialChange={this.handleFooterSocialChange}
+            fonts={this.state.fonts}
+            colors={this.state.colors}
+          />
+        </SidebarContainer>
+      </EditorWrapper>
+    );
+  }
 }
 
 export default Editor;
