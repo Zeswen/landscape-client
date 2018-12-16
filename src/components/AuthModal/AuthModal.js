@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import AuthService from '../../utils/AuthService';
+import './AuthModal.css'
 
 import {
-  AuthModal,
+  AuthModalContainer,
   AuthModalBox,
+  StyledH1,
   AuthModalClose,
+  CloseImage,
   AuthModalForm,
-  AuthInput
+  AuthInput,
+  SubmitButton
 } from './AuthModal.styled';
 
-export default class Signup extends Component {
+export default class AuthModal extends Component {
   state = {
     email: '',
     password: '',
-    err: ''
+    err: '',
+    closeModal: false
   };
 
   service = new AuthService();
 
   closeAuthModal = e => {
     e.preventDefault();
-    this.props.history.push({ pathname: '/' });
+    this.setState(prevState => ({
+      ...prevState,
+      closeModal: true
+    }))
+    setTimeout(() => this.props.history.push({ pathname: '/' }), 250)
   };
 
   handleAuthChange = e => {
@@ -67,32 +76,32 @@ export default class Signup extends Component {
         : this.handleSignup;
 
     return (
-      <AuthModal>
-        <AuthModalBox>
+      <AuthModalContainer className={this.state.closeModal ? 'fade-out' : ''} >
+        <AuthModalBox >
           <AuthModalClose onClick={this.closeAuthModal}>
-            X
+            <CloseImage src={require('../../images/close.png')} alt="close button"/>
           </AuthModalClose>
+          <StyledH1>{title}</StyledH1>
           <AuthModalForm onSubmit={handleFormSubmit}>
-            <h1>{title}</h1>
-            <label>Email</label>
             <AuthInput
+              placeholder="Email"
               type="email"
               name="email"
               onChange={this.handleAuthChange}
             />
-            <label>Password</label>
             <AuthInput
+              placeholder="Password"
               type="password"
               name="password"
               onChange={this.handleAuthChange}
             />
             <p>{this.state.err}</p>
-            <button type="submit" onSubmit={this.handleAuthSubmit}>
+            <SubmitButton type="submit" onSubmit={this.handleAuthSubmit}>
               Submit
-            </button>
+            </SubmitButton>
           </AuthModalForm>
         </AuthModalBox>
-      </AuthModal>
+      </AuthModalContainer>
     );
   }
 }

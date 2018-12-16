@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PageService from '../../utils/PageService';
 
 import {
-  NewPageModal,
+  NewPageModalContainer,
   NewPageModalBox,
+  StyledH1,
   NewPageModalClose,
+  CloseImage,
   NewPageModalForm,
-  NewPageInput
+  NewPageInput,
+  SubmitButton
 } from './NewPage.styled';
 
 export default class NewPage extends Component {
@@ -49,26 +52,26 @@ export default class NewPage extends Component {
 
   render() {
     return (
-      <NewPageModal>
+      <NewPageModalContainer>
         <NewPageModalBox>
           <NewPageModalClose onClick={this.closeNewPageModal}>
-            X
+            <CloseImage src={require('../../images/close.png')} alt="close button"/>
           </NewPageModalClose>
+            <StyledH1>New Page</StyledH1>
           <NewPageModalForm onSubmit={this.handleNewPageSubmit}>
-            <h1>New Page</h1>
-            <label>Title</label>
             <NewPageInput
+              placeholder="Title"
               type="text"
               name="title"
               onChange={this.handleNewPageChange}
             />
             <p>{this.props.message}</p>
-            <button type="submit" onSubmit={this.handleNewPageSubmit}>
+            <SubmitButton type="submit" onSubmit={this.handleNewPageSubmit}>
               Submit
-            </button>
+            </SubmitButton>
           </NewPageModalForm>
         </NewPageModalBox>
-      </NewPageModal>
+      </NewPageModalContainer>
     );
   }
 }
