@@ -13,7 +13,6 @@ export const LandingNav = styled.nav`
     width: 100vw;
     height: 85px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-    transition: all 0.15s ease;
 
     &:hover {
         transition: all 0.25s ease;
