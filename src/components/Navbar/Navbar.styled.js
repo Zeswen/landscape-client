@@ -66,6 +66,14 @@ export const NewProjectButton = styled.button`
     }
 `;
 
+export const LogoText = styled.h1`
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 1px 10px black;
+`;
+
 export const NavUl = styled.ul`
     margin: 0;
     padding: 0;

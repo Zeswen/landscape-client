@@ -2,15 +2,13 @@ import React from 'react'
 
 import Navbar from '../Navbar';
 
-import { HomeWrapper, Header, Logo } from './Home.styled';
+import { HomeWrapper, Header } from './Home.styled';
 
 const Home = props => (
     <React.Fragment>
         <Navbar {...props} />
         <HomeWrapper>
-            <Header>
-                <Logo>Landscape</Logo>
-            </Header>
+            <Header/>
         </HomeWrapper>
     </React.Fragment>
 );

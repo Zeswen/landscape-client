@@ -14,11 +14,3 @@ export const Header = styled.div`
     height: 100vh;
     padding-top: 8rem;
 `;
-
-export const Logo = styled.h1`
-    font-size: 5rem;
-    font-weight: 400;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    text-shadow: 0 1px 10px black;
-`;

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { LandingNav, Logo, NewProjectButton, NavUl, NavLi, NavLink } from './Navbar.styled';
+import { LandingNav, Logo, NewProjectButton, LogoText, NavUl, NavLi, NavLink } from './Navbar.styled';
 
 const Navbar = props => (
     <LandingNav>
         <Logo onClick={() => props.history.push('/')} src={require('../../images/logo.svg')} alt="logo"/>
-        {props.user && (
-            <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
-        )}
+        {props.user
+        ? <Link to="/newPage"><NewProjectButton>New Project</NewProjectButton></Link>
+        : <LogoText>Landscape</LogoText>
+    }
         <NavUl>
             {props.user
                 ? (
