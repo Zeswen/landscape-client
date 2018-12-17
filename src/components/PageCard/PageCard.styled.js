@@ -1,4 +1,13 @@
-import  styled from 'styled-components';
+import  styled, {keyframes} from 'styled-components';
+
+const fadein = keyframes`
+    0% { opacity: 0 }
+    100% { opacity: 100 }
+`;
+
+export const Card = styled.div`
+    animation: ${fadein} 0.25s ease-in-out
+`;
 
 export const EditButton = styled.button`
     background: rgb(40,80,90);

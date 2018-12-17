@@ -5,7 +5,7 @@ export const LandingNav = styled.nav`
     margin: 0;
     padding: 0.5rem 2rem;
     background: rgba(234,229,254, 0.8);
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,10 +13,8 @@ export const LandingNav = styled.nav`
     width: 100vw;
     height: 85px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-
-    &:hover {
-        transition: all 0.25s ease;
-    }
+    animation: none;
+    transition: none;
 `;
 
 export const Logo = styled.img`

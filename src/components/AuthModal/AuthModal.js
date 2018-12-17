@@ -10,7 +10,8 @@ import {
   CloseImage,
   AuthModalForm,
   AuthInput,
-  SubmitButton
+  SubmitButton,
+  LdsDualRing,
 } from './AuthModal.styled';
 
 export default class AuthModal extends Component {
@@ -18,6 +19,7 @@ export default class AuthModal extends Component {
     email: '',
     password: '',
     err: '',
+    isSubmitting: false,
     closeModal: false
   };
 
@@ -43,17 +45,31 @@ export default class AuthModal extends Component {
   handleSignup = e => {
     e.preventDefault();
     const { email, password } = this.state;
-
-    this.service.signup(email, password).then(res => {
+    this.setState(prevState => ({
+      ...prevState,
+      isSubmitting: true
+    }))
+    this.service.signup(email, password)
+    .then(res => {
       this.props.getUser(res);
       this.props.history.push({ pathname: '/' });
-    });
+    })
+    .catch(err => {
+      this.setState(prevState => ({
+          ...prevState,
+          isSubmitting: false,
+          err: err.message
+      }));
+  })
   };
 
   handleLogin = e => {
     e.preventDefault();
     const { email: username, password } = this.state;
-
+    this.setState(prevState => ({
+      ...prevState,
+      isSubmitting: true
+    }))
     this.service.login(username, password)
         .then(res => {
             this.props.getUser(res);
@@ -62,6 +78,7 @@ export default class AuthModal extends Component {
         .catch(err => {
             this.setState(prevState => ({
                 ...prevState,
+                isSubmitting: false,
                 err: err.message
             }));
         })
@@ -96,9 +113,11 @@ export default class AuthModal extends Component {
               onChange={this.handleAuthChange}
             />
             <p>{this.state.err}</p>
-            <SubmitButton type="submit" onSubmit={this.handleAuthSubmit}>
+            {this.state.isSubmitting 
+            ? <LdsDualRing/>
+            : (<SubmitButton type="submit" onSubmit={this.handleAuthSubmit}>
               Submit
-            </SubmitButton>
+            </SubmitButton>)}
           </AuthModalForm>
         </AuthModalBox>
       </AuthModalContainer>

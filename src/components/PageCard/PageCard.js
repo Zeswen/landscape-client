@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EditButton } from './PageCard.styled';
+import { Card, EditButton } from './PageCard.styled';
 
 const PageCard = (props) => (
-  <div key={props.id} className="card" style={{ width: '18rem', height: '18rem' }}>
+  <Card key={props.id} className="card" style={{ width: '18rem', height: '18rem' }}>
     <Link to={`/pages/${props.id}`}>
       <img
         className="card-img-top"
@@ -19,8 +19,8 @@ const PageCard = (props) => (
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'space-evenly',
-      }}
+        alignItems: 'space-evenly'
+        }}
     >
       <h5 className="card-title">{props.title}</h5>
 
@@ -30,7 +30,7 @@ const PageCard = (props) => (
       </EditButton>
       	</Link>
     </div>
-  </div>
+  </Card>
 );
 
 export default PageCard;
