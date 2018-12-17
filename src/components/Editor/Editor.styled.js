@@ -62,5 +62,4 @@ export const SidebarContainer = styled.div`
   background-position: center right;
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
   animation: ${fadein} 0.25s ease-in-out;
-  transition: all 0.15s ease-in-out;
 `;
