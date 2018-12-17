@@ -7,7 +7,7 @@ const fadein = keyframes`
 
 const saturation = keyframes`
   0% {filter: grayscale(0%)}
-  100% {filter: grayscale(100%)}
+  100% {filter: grayscale(75%)}
 `;
 
 
@@ -21,11 +21,11 @@ export const EditorWrapper = styled.div`
   z-index: -1;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: url(${require('../../images/landscape2.jpg')}) no-repeat;
+  background: radial-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${require('../../images/landscape2.jpg')}) no-repeat;
   background-position: center;
   background-size: cover;
-  animation: ${saturation} 0.25s ease-in-out;
-  filter: grayscale(100%);
+  filter: grayscale(75%);
+  animation: ${saturation} 1s ease-in-out;
   }
 `;
 
@@ -54,8 +54,13 @@ export const SidebarContainer = styled.div`
   width: 25%;
   min-width: 300px;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   z-index: 1;
-  background: white;
+  color: rgb(40, 80, 90);
+  filter: grayscale(25%);
+  background: linear-gradient(rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.5)), url(${require('../../images/landscape2.jpg')}) no-repeat ;
+  background-position: center right;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
   animation: ${fadein} 0.25s ease-in-out;
+  transition: all 0.15s ease-in-out;
 `;

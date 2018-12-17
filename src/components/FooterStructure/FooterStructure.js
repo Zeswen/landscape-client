@@ -104,7 +104,7 @@ export default class FooterStructure extends React.Component {
     const { onClickTab, title, fonts, isOpen, innerStructure } = this.props;
     return (
       <React.Fragment>
-        <StyledTab onClick={() => onClickTab(title)}>{title}</StyledTab>
+        <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>{title}</StyledTab>
         {isOpen && (
           <StyledTabContent>
             <StyledTitle>Container</StyledTitle>

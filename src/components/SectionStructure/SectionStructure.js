@@ -4,7 +4,8 @@ import {
   StyledTab,
   StyledTabContent,
   StyledTitle,
-  ContentSection
+  ContentSection,
+  AddSectionButton
 } from './SectionStructure.styled';
 
 export default class SectionStructure extends React.Component {
@@ -132,7 +133,7 @@ export default class SectionStructure extends React.Component {
     } = this.props;
     return (
       <React.Fragment>
-        <StyledTab onClick={() => onClickTab(title)}>{title}</StyledTab>
+        <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>{title}</StyledTab>
         {isOpen && (
           <StyledTabContent>
             <StyledTitle>Container</StyledTitle>
@@ -268,11 +269,11 @@ export default class SectionStructure extends React.Component {
                 value={innerStructure.descriptionColor}
               />
             </ContentSection>
-            <button
+            <AddSectionButton
               onClick={() => handleAddSection(this.props.innerStructure.id)}
             >
               Clone Section
-            </button>
+            </AddSectionButton>
           </StyledTabContent>
         )}
       </React.Fragment>

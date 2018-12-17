@@ -73,9 +73,9 @@ export default class HeaderStructure extends React.Component {
 
     return (
       <React.Fragment>
-        <StyledTab onClick={() => onClickTab(title)}>{title}</StyledTab>
+        <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>{title}</StyledTab>
         {isOpen && (
-          <StyledTabContent>
+          <StyledTabContent >
             <StyledTitle>Container</StyledTitle>
             <ContentSection>
               <h4>Logo</h4>
