@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import HeightTransitionStyles from '../../utils/HeightTransitionStyles';
+
 export const StyledTab = styled.div`
     display: flex;
     justify-content: center;
@@ -21,6 +23,9 @@ export const StyledTab = styled.div`
 export const StyledTabContent = styled.div`
     padding: 0 0.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    height: ${({ transitionState, scrollHeight })=> HeightTransitionStyles[transitionState](scrollHeight)};
+    transition: height 100ms linear;
+    overflow: hidden;
     background: rgba(255, 255, 255, 0.6);
 `;
 

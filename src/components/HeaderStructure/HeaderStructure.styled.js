@@ -1,11 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const slide = keyframes`
-    0% {height: 0}
-    100% {height: 100%}
-`;
+import HeightTransitionStyles from '../../utils/HeightTransitionStyles';
 
 export const StyledTab = styled.div`
+    transition: background 0.15s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,11 +14,10 @@ export const StyledTab = styled.div`
     background: ${({ isOpen }) => isOpen ? 'rgba(255, 255, 255, 0.6)' : 'rgba(200, 200, 200, 0.4)'};
     width: 100%;
     cursor: pointer;
-    transition: all 0.15s ease-in-out;
 
     &:hover {
+        transition: background 0.15s ease-in-out;
         background: rgba(255, 255, 255, 0.6);
-        transition: all 0.15s ease-in-out;
     }
 `;
 
@@ -28,8 +25,9 @@ export const StyledTabContent = styled.div`
     padding: 0 0.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     background: rgba(255, 255, 255, 0.6);
-    animation: ${slide} 1s ease-in-out;
-    transition: all 0.15s ease-in-out;
+    height: ${({ transitionState, scrollHeight })=> HeightTransitionStyles[transitionState](scrollHeight)};
+    transition: height 100ms linear; 
+    overflow: hidden;
 `;
 
 export const StyledTitle = styled.h1`

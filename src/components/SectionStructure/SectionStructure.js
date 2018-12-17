@@ -1,4 +1,5 @@
 import React from 'react';
+import Transition from "react-transition-group/Transition";
 
 import {
   StyledTab,
@@ -9,6 +10,12 @@ import {
 } from './SectionStructure.styled';
 
 export default class SectionStructure extends React.Component {
+  contentRef = null;
+
+  setContentRef = element => {
+    this.contentRef = element;
+  };
+
   handleOnBackgroundColorClick = event => {
     const backgroundColor = event.target.value;
     this.props.handleOnChange(
@@ -134,8 +141,17 @@ export default class SectionStructure extends React.Component {
     return (
       <React.Fragment>
         <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>{title}</StyledTab>
-        {isOpen && (
-          <StyledTabContent>
+        <Transition
+          in={isOpen}
+          timeout={0}
+          mountOnEnter
+        >
+          {(transitionState) => (
+          <StyledTabContent
+          ref={this.setContentRef}
+          scrollHeight={this.contentRef && this.contentRef.scrollHeight}
+          transitionState={transitionState}
+          >
             <StyledTitle>Container</StyledTitle>
             <ContentSection>
               <h4>BG Color</h4>
@@ -276,6 +292,7 @@ export default class SectionStructure extends React.Component {
             </AddSectionButton>
           </StyledTabContent>
         )}
+        </Transition>
       </React.Fragment>
     );
   }

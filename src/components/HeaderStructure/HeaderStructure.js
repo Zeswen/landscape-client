@@ -1,71 +1,78 @@
-import React from 'react';
+import React from "react";
+import Transition from "react-transition-group/Transition";
 
 import {
   StyledTab,
   StyledTabContent,
   StyledTitle,
   ContentSection
-} from './HeaderStructure.styled';
+} from "./HeaderStructure.styled";
 
 export default class HeaderStructure extends React.Component {
+  contentRef = null;
+
+  setContentRef = element => {
+    this.contentRef = element;
+  };
+
   handleOnLogoChange = event => {
     const logo = event.target.files[0];
-    this.props.handleOnChange('imgUrl', logo);
+    this.props.handleOnChange("imgUrl", logo);
   };
 
   handleOnBackgroundColorClick = event => {
     const backgroundColor = event.target.value;
-    this.props.handleOnChange('backgroundColor', backgroundColor);
+    this.props.handleOnChange("backgroundColor", backgroundColor);
   };
 
   handleOnPositionChange = event => {
     const position = event.target.value;
-    this.props.handleOnChange('position', position);
+    this.props.handleOnChange("position", position);
   };
 
   handleOnHeightChange = event => {
     const height = event.target.value;
-    this.props.handleOnChange('height', height);
+    this.props.handleOnChange("height", height);
   };
 
   handleOnPaddingVChange = event => {
     const paddingV = event.target.value;
-    this.props.handleOnChange('paddingV', paddingV);
+    this.props.handleOnChange("paddingV", paddingV);
   };
 
   handleOnPaddingHChange = event => {
     const paddingH = event.target.value;
-    this.props.handleOnChange('paddingH', paddingH);
+    this.props.handleOnChange("paddingH", paddingH);
   };
 
   handleOnBurguerChange = event => {
     const hasMenu = event.target.checked;
-    this.props.handleOnChange('hasMenu', hasMenu);
+    this.props.handleOnChange("hasMenu", hasMenu);
   };
 
   handleOnMenuSizeChange = event => {
     const menuSize = event.target.value;
-    this.props.handleOnChange('menuSize', menuSize);
+    this.props.handleOnChange("menuSize", menuSize);
   };
 
   handleOnReverseChange = event => {
     const isReverse = event.target.checked;
-    this.props.handleOnChange('isReverse', isReverse);
+    this.props.handleOnChange("isReverse", isReverse);
   };
 
   handleOnFontFamilyChange = event => {
     const fontFamily = event.target.value;
-    this.props.handleOnChange('fontFamily', fontFamily);
+    this.props.handleOnChange("fontFamily", fontFamily);
   };
 
   handleOnFontSizeChange = event => {
     const fontSize = event.target.value;
-    this.props.handleOnChange('fontSize', fontSize);
+    this.props.handleOnChange("fontSize", fontSize);
   };
 
   handleOnColorClick = event => {
     const color = event.target.value;
-    this.props.handleOnChange('color', color);
+    this.props.handleOnChange("color", color);
   };
 
   render() {
@@ -73,9 +80,20 @@ export default class HeaderStructure extends React.Component {
 
     return (
       <React.Fragment>
-        <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>{title}</StyledTab>
-        {isOpen && (
-          <StyledTabContent >
+        <StyledTab isOpen={isOpen} onClick={() => onClickTab(title)}>
+          {title}
+        </StyledTab>
+        <Transition
+          in={isOpen}
+          timeout={0}
+          mountOnEnter
+        >
+          {(transitionState) => (
+            <StyledTabContent
+              ref={this.setContentRef}
+              scrollHeight={this.contentRef && this.contentRef.scrollHeight}
+              transitionState={transitionState}
+            >
             <StyledTitle>Container</StyledTitle>
             <ContentSection>
               <h4>Logo</h4>
@@ -198,7 +216,8 @@ export default class HeaderStructure extends React.Component {
               />
             </ContentSection>
           </StyledTabContent>
-        )}
+          )}
+        </Transition>
       </React.Fragment>
     );
   }
