@@ -25,8 +25,8 @@ export const StyledTabContent = styled.div`
     padding: 0 0.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     background: rgba(255, 255, 255, 0.6);
-    height: ${({ transitionState, scrollHeight })=> HeightTransitionStyles[transitionState](scrollHeight)};
-    transition: height 100ms linear; 
+    height: ${({ transitionState, scrollHeight }) => HeightTransitionStyles[transitionState](scrollHeight)};
+    transition: height 250ms ease-in; 
     overflow: hidden;
 `;
 
