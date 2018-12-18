@@ -21,13 +21,12 @@ export const StyledTab = styled.div`
 `;
 
 export const StyledTabContent = styled.div`
+    overflow: hidden;
     padding: 0 0.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     height: ${({ transitionState, scrollHeight }) => HeightTransitionStyles[transitionState](scrollHeight)};
     transition: height 250ms ease-in; 
-    overflow: overlay;
     background: rgba(255, 255, 255, 0.6);
-
     ::-webkit-scrollbar {
         width: 0px;
         background: transparent;
@@ -50,7 +49,6 @@ export const SocialContentSection = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 1rem;
-    /* align-items: center; */
 `;
 
 export const SocialMedias = styled.div`

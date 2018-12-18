@@ -303,11 +303,11 @@ export default class SectionStructure extends React.Component {
                 value={innerStructure.descriptionColor}
               />
             </ContentSection>
-            <AddSectionButton
+            {/* <AddSectionButton
               onClick={() => handleAddSection(this.props.innerStructure.id)}
             >
               Clone Section
-            </AddSectionButton>
+            </AddSectionButton> */}
           </StyledTabContent>
         )}
         </Transition>

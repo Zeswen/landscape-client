@@ -4,7 +4,7 @@ import HeaderStructure from '../HeaderStructure';
 import SectionStructure from '../SectionStructure';
 import FooterStructure from '../FooterStructure';
 
-import { SidebarBodyWrapper, AddSectionButton } from './SidebarBody.styled';
+import { AddSectionButton } from './SidebarBody.styled';
 
 import HocContext from '../HocContext';
 
@@ -33,7 +33,7 @@ export default class SidebarBody extends React.Component {
     const { openTab } = this.state;
 
     return (
-      <SidebarBodyWrapper>
+      <React.Fragment>
           <HocContext>
           {({header}, fonts) => (
           <HeaderStructure
@@ -61,7 +61,7 @@ export default class SidebarBody extends React.Component {
             />
           )))}
         </HocContext>
-        <AddSectionButton onClick={() => handleAddSection(null)}>+</AddSectionButton>
+        <AddSectionButton onClick={() => handleAddSection(null)}>Add New Section</AddSectionButton>
         <HocContext>
         { ({footer}, fonts) => (
           <FooterStructure
@@ -75,7 +75,7 @@ export default class SidebarBody extends React.Component {
           />
         )}
         </HocContext>
-      </SidebarBodyWrapper>
+      </React.Fragment>
     );
   }
 }

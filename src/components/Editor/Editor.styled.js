@@ -54,7 +54,8 @@ export const SidebarContainer = styled.div`
   width: 25%;
   min-width: 300px;
   height: 100vh;
-  overflow: hidden;
+  max-height: 100vh;
+  overflow: auto;
   z-index: 1;
   color: rgb(40, 80, 90);
   filter: grayscale(25%);
@@ -62,4 +63,9 @@ export const SidebarContainer = styled.div`
   background-position: center right;
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
   animation: ${fadein} 0.25s ease-in-out;
+
+  ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
 `;

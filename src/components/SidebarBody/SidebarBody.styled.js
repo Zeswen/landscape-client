@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
-export const SidebarBodyWrapper = styled.div`
-    
-`;
-
 export const AddSectionButton = styled.button`
     height: 60px;
     width: 100%;
     border: none;
+    outline: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     font-weight: 500;
     font-size: 1.5rem;
@@ -17,7 +14,16 @@ export const AddSectionButton = styled.button`
     transition: all 0.15s ease-in-out;
 
     &:hover {
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(161, 212, 253, 0.6);
         transition: all 0.15s ease-in-out;
+        outline: none;
+    }
+
+    &:focus {
+        outline: none;       
+    }
+
+    &:active {
+        outline: none;       
     }
 `;
