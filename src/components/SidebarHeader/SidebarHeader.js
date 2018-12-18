@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { HeaderContainer, SaveButton } from './SidebarHeader.styled';
+import { HeaderContainer, AutoSaveButton, SaveButton } from './SidebarHeader.styled';
 
 class SidebarHeader extends Component {
   state = {
@@ -8,19 +8,27 @@ class SidebarHeader extends Component {
   };
 
   handleSaveButton = () => {
-    this.props
-      .handleSave()
+    this.props.handleSave()
       .then(res => {
         this.setState(
           prevState => ({
             ...prevState,
-            message: res
+            message: res,
+            autoSave: false
           }),
           () => this.handleMessageTimeout()
         );
       })
       .catch(e => console.log(e));
   };
+
+  handleAutoSaveButton = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      autoSave: !this.state.autoSave
+    }))
+    this.props.handleAutoSave();
+  }
 
   handleMessageTimeout = () => {
     setTimeout(() => {
@@ -31,11 +39,12 @@ class SidebarHeader extends Component {
     }, 2500);
   };
 
+
   render() {
     return (
       <HeaderContainer>
-        <SaveButton onClick={this.handleSaveButton}>Save</SaveButton>
-        {this.state.message !== null && <p>{this.state.message}</p>}
+        <SaveButton autoSave={this.state.autoSave} message={this.state.message} onClick={this.handleSaveButton}>{this.state.autoSave ? '' : (this.state.message ? this.state.message : 'Save')}</SaveButton>
+        <AutoSaveButton autoSave={this.state.autoSave} onClick={this.handleAutoSaveButton}/>
       </HeaderContainer>
     );
   }

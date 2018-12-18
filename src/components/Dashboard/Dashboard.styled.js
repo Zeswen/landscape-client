@@ -12,7 +12,3 @@ export const DashboardWrapper = styled.div`
     align-items: space-evenly;
     flex-wrap: wrap;
 `;
-
-export const EditButton = styled.button`
-    background: rgb(40,80,90);
-`;

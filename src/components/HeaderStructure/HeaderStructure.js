@@ -60,6 +60,11 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("isReverse", isReverse);
   };
 
+  handleTitleChange = event => {
+    const title = event.target.value;
+    this.props.handleOnChange("title", title);
+  };
+
   handleOnFontFamilyChange = event => {
     const fontFamily = event.target.value;
     this.props.handleOnChange("fontFamily", fontFamily);
@@ -95,10 +100,6 @@ export default class HeaderStructure extends React.Component {
               transitionState={transitionState}
             >
             <StyledTitle>Container</StyledTitle>
-            <ContentSection>
-              <h4>Logo</h4>
-              <input type="file" onChange={this.handleOnLogoChange} disabled />
-            </ContentSection>
             <ContentSection>
               <h4>BG Color</h4>
               <input
@@ -184,6 +185,14 @@ export default class HeaderStructure extends React.Component {
               </ContentSection>
             )}
             <StyledTitle>Title</StyledTitle>
+            <ContentSection>
+              <h4>Logo</h4>
+              <input type="file" onChange={this.handleOnLogoChange} disabled />
+            </ContentSection>
+            <ContentSection>
+              <h4>Text</h4>
+              <input type="text" maxLength="20" onChange={this.handleTitleChange} value={innerStructure.title}/>
+            </ContentSection>
             <ContentSection>
               <h4>Font Family</h4>
               <select

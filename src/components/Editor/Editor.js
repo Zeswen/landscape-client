@@ -4,6 +4,8 @@ import { merge } from 'lodash';
 import { BASE_SECTION } from '../../utils/baseDesigns';
 import PageService from '../../utils/PageService';
 
+import { FontsContext, StructureContext } from '../Context';
+
 import {
   EditorWrapper,
   EditorContainer,
@@ -20,16 +22,20 @@ class Editor extends Component {
       sections: [],
       footer: {}
     },
-    colors: [],
     fonts: []
   };
 
   message = null;
 
+  autoSave = false;
+
   service = new PageService();
 
+  //@TODO: Reducer functions. https://redux.js.org/basics/reducers
+  //@TODO: Dispatcher. 
+
   componentDidMount() {
-    this.service.getPage(this.props.match.params.id)
+    this.service.getPage(this.props.match.params.url)
         .then(page => {
             this.setState({ ...page });
         });
@@ -49,6 +55,7 @@ class Editor extends Component {
     this.setState(prevState => ({
         ...merge(prevState, deepStateChange)
     }));
+    this.autoSave && this.handleSave()
   }
 
   handleChangeHeader = (fieldName, value) => {
@@ -98,10 +105,17 @@ class Editor extends Component {
   };
 
   handleSave = () => {
-    return this.service.updatePage({ ...this.state }).then(res => res.message);
+    return this.service.updatePage({ ...this.state })
+      .then(res => res.message);
   };
 
+  handleAutoSave = () => {
+    this.autoSave = !this.autoSave;
+  }
+
   render() {
+    console.log(this.autoSave)
+
     return (
       <EditorWrapper>
         <EditorContainer>
@@ -110,17 +124,21 @@ class Editor extends Component {
           </ViewContainer>
         </EditorContainer>
         <SidebarContainer>
-          <Sidebar 
-            handleSave={this.handleSave}
-            structure={this.state.structure}
-            handleChangeHeader={this.handleChangeHeader}
-            handleChangeSection={this.handleChangeSection}
-            handleAddSection={this.handleAddSection}
-            handleChangeFooter={this.handleChangeFooter}
-            handleFooterSocialChange={this.handleFooterSocialChange}
-            fonts={this.state.fonts}
-            colors={this.state.colors}
-          />
+          <FontsContext.Provider value={this.state.fonts}>
+            <StructureContext.Provider value={this.state.structure}>
+                  <Sidebar 
+                    autoSave={this.autoSave}
+                    handleAutoSave={this.handleAutoSave}
+                    handleSave={this.handleSave}
+                    handleChangeHeader={this.handleChangeHeader}
+                    handleChangeSection={this.handleChangeSection}
+                    handleAddSection={this.handleAddSection}
+                    handleChangeFooter={this.handleChangeFooter}
+                    handleFooterSocialChange={this.handleFooterSocialChange}
+                    colors={this.state.colors}
+                  />
+            </StructureContext.Provider>
+          </FontsContext.Provider>
         </SidebarContainer>
       </EditorWrapper>
     );

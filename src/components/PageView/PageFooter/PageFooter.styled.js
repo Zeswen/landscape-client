@@ -4,6 +4,7 @@ const POSITION_TO_FLEX = {
     left: 'flex-start',
     center: 'center',
     right: 'flex-end',
+    auto: ''
 };
 
 export const FooterContainer = styled.div`
@@ -35,6 +36,7 @@ export const OwnerMessage = styled.p`
 export const Social = styled.div`
     display: flex;
     justify-content: space-evenly;
+    align-self: auto;
 `;
 
 export const SocialImg = styled.img`

@@ -113,7 +113,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/pages/:id"
+            path="/pages/:url"
             render={routerProps => (
               <React.Fragment>
                 <Page {...routerProps} />
@@ -122,7 +122,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/pages/:id/edit"
+            path="/pages/:url/edit"
             render={routerProps => (
               <React.Fragment>
                 <Editor {...routerProps} />

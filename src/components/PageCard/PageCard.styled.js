@@ -6,12 +6,15 @@ const fadein = keyframes`
 `;
 
 export const Card = styled.div`
-    animation: ${fadein} 0.25s ease-in-out
+    animation: ${fadein} 0.25s ease-in-out;
+    align-self: flex-start;
+    text-align: center;
+    font-family: 'Ubuntu';  
 `;
 
 export const EditButton = styled.button`
-    background: rgb(40,80,90);
-    border: 1px solid rgb(40,80,90);
+    background: rgb(75, 85, 100);
+    border: 1px solid rgb(40, 80, 90);
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -33,6 +36,6 @@ export const EditButton = styled.button`
 
     &:hover {
         cursor: pointer;
-        background: rgb(50,90,100)
+        background: rgb(50, 60, 75)
     }
 `;

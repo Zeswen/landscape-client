@@ -4,16 +4,13 @@ import SidebarBody from '../SidebarBody';
 
 const Sidebar = props => (
   <React.Fragment>
-    <SidebarHeader handleSave={props.handleSave} />
+    <SidebarHeader handleSave={props.handleSave} autoSave={props.autoSave} handleAutoSave={props.handleAutoSave} />
     <SidebarBody
-      structure={props.structure}
       handleChangeHeader={props.handleChangeHeader}
       handleChangeSection={props.handleChangeSection}
       handleAddSection={props.handleAddSection}
       handleChangeFooter={props.handleChangeFooter}
       handleFooterSocialChange={props.handleFooterSocialChange}
-      fonts={props.fonts}
-      colors={props.colors}
     />
   </React.Fragment>
 );

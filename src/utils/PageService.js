@@ -15,8 +15,8 @@ export default class PagesService {
             .then(res => res.data)
     }
 
-    getPage = (id) => {
-        return this.service.post('/getPage', { id })
+    getPage = (url) => {
+        return this.service.post('/getPage', { url })
             .then(res => res.data)
     }
 

@@ -25,8 +25,13 @@ export const StyledTabContent = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     height: ${({ transitionState, scrollHeight }) => HeightTransitionStyles[transitionState](scrollHeight)};
     transition: height 250ms ease-in; 
-    overflow: hidden;
+    overflow: overlay;
     background: rgba(255, 255, 255, 0.6);
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
 `;
 
 export const StyledTitle = styled.h1`
@@ -44,6 +49,7 @@ export const SocialContentSection = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 1rem;
     /* align-items: center; */
 `;
 
@@ -69,7 +75,6 @@ export const SocialInput = styled.input`
     border: 1px solid rgba(200, 200, 200, 0.8);
     border-radius: 10px;
     padding: 0.25rem;
-    margin-bottom: 0.25rem;
     color: rgba(0, 0, 0, 0.9);
     transition: all 0.25s;
 

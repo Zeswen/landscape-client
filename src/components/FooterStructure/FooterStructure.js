@@ -138,14 +138,9 @@ export default class FooterStructure extends React.Component {
                 onChange={this.handleOnPositionChange}
                 value={innerStructure.position}
               >
-                {innerStructure.hasMenu ? (
-                  <option value="left">Aside</option>
-                ) : (
-                  <React.Fragment>
-                    <option value="left">Left</option>
-                    <option value="right">Right</option>
-                  </React.Fragment>
-                )}
+                <option value="auto">Auto</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
                 <option value="center">Center</option>
               </select>
             </ContentSection>

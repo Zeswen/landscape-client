@@ -10,7 +10,7 @@ const Dashboard = props => (
         <Navbar {...props} />
         <DashboardWrapper>
             {props.user && (props.user.pages || []).map(elem => (
-                <PageCard key={elem._id} id={elem._id} title={elem.title} />
+                <PageCard key={elem._id} url={elem.url} title={elem.title} />
             ))}
         </DashboardWrapper>
     </React.Fragment>

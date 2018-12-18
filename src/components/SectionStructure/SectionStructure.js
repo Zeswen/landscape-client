@@ -75,6 +75,11 @@ export default class SectionStructure extends React.Component {
     );
   };
 
+  handleTitleChange = event => {
+    const title = event.target.value;
+    this.props.handleOnChange("title", title, this.props.innerStructure.id);
+  };
+
   handleOnTitleFontFamilyChange = event => {
     const titleFontFamily = event.target.value;
     this.props.handleOnChange(
@@ -100,6 +105,11 @@ export default class SectionStructure extends React.Component {
       titleColor,
       this.props.innerStructure.id
     );
+  };
+
+  handleDescriptionChange = event => {
+    const description = event.target.value;
+    this.props.handleOnChange("description", description, this.props.innerStructure.id);
   };
 
   handleOnDescriptionFontFamilyChange = event => {
@@ -223,6 +233,10 @@ export default class SectionStructure extends React.Component {
             </ContentSection>
             <StyledTitle>Title</StyledTitle>
             <ContentSection>
+              <h4>Text</h4>
+              <input type="text" maxLength="20" onChange={this.handleTitleChange} value={innerStructure.title}/>
+            </ContentSection>
+            <ContentSection>
               <h4>Font Family</h4>
               <select
                 onChange={this.handleOnTitleFontFamilyChange}
@@ -254,6 +268,10 @@ export default class SectionStructure extends React.Component {
               />
             </ContentSection>
             <StyledTitle>Description</StyledTitle>
+            <ContentSection>
+              <h4>Text</h4>
+              <input type="text" onChange={this.handleDescriptionChange} value={innerStructure.description}/>
+            </ContentSection>
             <ContentSection>
               <h4>Font Family</h4>
               <select
