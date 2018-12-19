@@ -6,6 +6,7 @@ const Sidebar = props => (
   <React.Fragment>
     <SidebarHeader handleSave={props.handleSave} autoSave={props.autoSave} handleAutoSave={props.handleAutoSave} />
     <SidebarBody
+      handlePhotoUpload={props.handlePhotoUpload}
       handleChangeHeader={props.handleChangeHeader}
       handleChangeSection={props.handleChangeSection}
       handleAddSection={props.handleAddSection}

@@ -17,7 +17,12 @@ export default class HeaderStructure extends React.Component {
 
   handleOnLogoChange = event => {
     const logo = event.target.files[0];
-    this.props.handleOnChange("imgUrl", logo);
+    this.props.handlePhotoUpload(logo)
+      .then(imgUrl => this.props.handleOnChange("imgUrl", imgUrl.imgUrl))
+  };
+
+  handleLogoRemoval = () => {
+    this.props.handleOnChange("imgUrl", null)
   };
 
   handleOnBackgroundColorClick = event => {
@@ -187,7 +192,10 @@ export default class HeaderStructure extends React.Component {
             <StyledTitle>Title</StyledTitle>
             <ContentSection>
               <h4>Logo</h4>
-              <input type="file" onChange={this.handleOnLogoChange} style={{width: '205px'}} />
+              <div>
+                <input type="file" onChange={this.handleOnLogoChange} style={{width: '105px'}} />
+                <button onClick={this.handleLogoRemoval}>Delete Logo</button>
+              </div>
             </ContentSection>
             <ContentSection>
               <h4>Text</h4>

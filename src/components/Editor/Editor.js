@@ -113,6 +113,10 @@ class Editor extends Component {
     this.autoSave = !this.autoSave;
   }
 
+  handlePhotoUpload = (file) => {
+    return this.service.uploadPhoto(file)
+  }
+
   render() {
     return (
       <EditorWrapper>
@@ -128,6 +132,7 @@ class Editor extends Component {
                     autoSave={this.autoSave}
                     handleAutoSave={this.handleAutoSave}
                     handleSave={this.handleSave}
+                    handlePhotoUpload={this.handlePhotoUpload}
                     handleChangeHeader={this.handleChangeHeader}
                     handleChangeSection={this.handleChangeSection}
                     handleAddSection={this.handleAddSection}
