@@ -81,7 +81,7 @@ class Editor extends Component {
             ? sections.find(elem => elem.id === sectionId) 
             : BASE_SECTION
         ),
-        id: sections.length,
+        id: sections.length + 1,
     };
 
     const deepStateChange = this.getDeepStateChange('sections', null, [...sections, newSection]);

@@ -8,7 +8,6 @@ const POSITION_TO_FLEX = {
 };
 
 export const FooterContainer = styled.div`
-
     display: flex;
     justify-content: center;
     text-align: center;
@@ -17,6 +16,7 @@ export const FooterContainer = styled.div`
     align-items: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
+    transition: all 0.2s ease;
 `;
 
 export const CopyrightMessage = styled.p`
@@ -24,6 +24,7 @@ export const CopyrightMessage = styled.p`
     font-size: ${({ copyrightFontSize }) => copyrightFontSize}px;
     font-family: ${({ copyrightFontFamily }) => copyrightFontFamily};
     color: ${({ copyrightColor }) => copyrightColor};
+    transition: all 0.2s ease;
 `;
 
 export const OwnerMessage = styled.p`
@@ -31,12 +32,14 @@ export const OwnerMessage = styled.p`
     font-size: ${({ ownerFontSize }) => ownerFontSize}px;
     font-family: ${({ ownerFontFamily }) => ownerFontFamily};
     color: ${({ ownerColor }) => ownerColor};
+    transition: all 0.2s ease;
 `;
 
 export const Social = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-self: auto;
+    transition: all 0.2s ease;
 `;
 
 export const SocialImg = styled.img`
@@ -44,6 +47,7 @@ export const SocialImg = styled.img`
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    transition: all 0.2s ease;
 
     &:hover {
         cursor: pointer;

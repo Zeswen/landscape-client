@@ -17,6 +17,7 @@ export const SectionContainer = styled.div`
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     text-align: ${({ textAlign }) => textAlign};
     flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
+    transition: all 0.2s ease;
 `;
 
 export const TitleText = styled.p`
@@ -26,6 +27,7 @@ export const TitleText = styled.p`
     font-size: ${({ titleFontSize }) => titleFontSize}px;
     font-family: ${({ titleFontFamily }) => titleFontFamily};
     color: ${({ titleColor }) => titleColor};
+    transition: all 0.2s ease;
 `;
 
 export const DescriptionText = styled.p`
@@ -34,4 +36,5 @@ export const DescriptionText = styled.p`
     font-size: ${({ descriptionFontSize }) => descriptionFontSize}px;
     font-family: ${({ descriptionFontFamily }) => descriptionFontFamily};
     color: ${({ descriptionColor }) => descriptionColor};
+    transition: all 0.2s ease;
 `;

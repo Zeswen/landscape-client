@@ -55,14 +55,19 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("hasMenu", hasMenu);
   };
 
+  handleOnReverseChange = event => {
+    const isReverse = event.target.checked;
+    this.props.handleOnChange("isReverse", isReverse);
+  };
+
   handleOnMenuSizeChange = event => {
     const menuSize = event.target.value;
     this.props.handleOnChange("menuSize", menuSize);
   };
 
-  handleOnReverseChange = event => {
-    const isReverse = event.target.checked;
-    this.props.handleOnChange("isReverse", isReverse);
+  handleMenuBackground = event => {
+    const color = event.target.value;
+    this.props.handleOnChange("menuBackground", color);
   };
 
   handleTitleChange = event => {
@@ -169,6 +174,16 @@ export default class HeaderStructure extends React.Component {
             </ContentSection>
             {(innerStructure.hasMenu || innerStructure.isReverse) && (
               <ContentSection>
+                <h4>Reverse</h4>
+                <input
+                  type="checkbox"
+                  checked={innerStructure.isReverse}
+                  onChange={this.handleOnReverseChange}
+                />
+              </ContentSection>
+            )}
+            {(innerStructure.hasMenu || innerStructure.isReverse) && (
+              <ContentSection>
                 <h4>Menu Size</h4>
                 <input
                   type="number"
@@ -180,14 +195,14 @@ export default class HeaderStructure extends React.Component {
               </ContentSection>
             )}
             {(innerStructure.hasMenu || innerStructure.isReverse) && (
-              <ContentSection>
-                <h4>Reverse</h4>
-                <input
-                  type="checkbox"
-                  checked={innerStructure.isReverse}
-                  onChange={this.handleOnReverseChange}
-                />
-              </ContentSection>
+            <ContentSection>
+              <h4>BG Color</h4>
+              <input
+                type="color"
+                value={innerStructure.menuBackground}
+                onChange={this.handleMenuBackground}
+              />
+            </ContentSection>
             )}
             <StyledTitle>Title</StyledTitle>
             <ContentSection>

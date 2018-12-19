@@ -31,7 +31,7 @@ export default class Page extends Component {
 
     render() {
         return (
-            <PageView  structure={this.state.structure} />
+            <PageView structure={this.state.structure} />
         )
     }
 }

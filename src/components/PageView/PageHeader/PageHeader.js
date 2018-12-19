@@ -1,32 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { HeaderContainer, LogoText, LogoImage, BurgerMenu } from './PageHeader.styled'
+import { Link } from 'react-router-dom';
 
-const PageHeader = props => (
-    //@TODO: Input on logo text. P on start, onclick input
-    //@TODO: Logo image via cloudinary
-    //@TODO: Functional burger menu
-    //@TODO: Lis to sections on burger menu
-    
+import { HeaderContainer, LogoText, LogoImage, BurgerMenu, BurgerMenuImg } from './PageHeader.styled'
 
-    <HeaderContainer
-        backgroundColor={props.backgroundColor}
-        position={props.position}
-        height={props.height}
-        paddingV={props.paddingV}
-        paddingH={props.paddingH}
-        hasMenu={props.hasMenu}
-        isReverse={props.isReverse}
-        fontFamily={props.fontFamily}
-        fontSize={props.fontSize}
-        color={props.color}
-    >
-        {props.imgUrl
-            ? <LogoImage src={props.imgUrl} alt="logo" />
-            : <LogoText>{props.title}</LogoText>
-        }
-        {props.hasMenu && <BurgerMenu menuSize={props.menuSize} src={require('../../../images/menu.png')} alt='burgerMenu' />}
-    </HeaderContainer>
-);
+export default class PageHeader extends Component {
+    state = {
+        isMenuVisible: false
+    }
 
-export default PageHeader;
+    handleMenu = () => {
+        this.setState(prevState => ({
+            ...prevState,
+            isMenuVisible: !this.state.isMenuVisible
+        }))
+    }
+
+    render() {
+        return (
+            //@TODO: Input on logo text. P on start, onclick input
+            //@TODO: Logo image via cloudinary
+            //@TODO: Functional burger menu
+            //@TODO: Lis to sections on burger menu
+            <HeaderContainer
+                backgroundColor={this.props.backgroundColor}
+                position={this.props.position}
+                height={this.props.height}
+                paddingV={this.props.paddingV}
+                paddingH={this.props.paddingH}
+                hasMenu={this.props.hasMenu}
+                isReverse={this.props.isReverse}
+                fontFamily={this.props.fontFamily}
+                fontSize={this.props.fontSize}
+                color={this.props.color}
+            >
+                {this.props.imgUrl
+                    ? <LogoImage src={this.props.imgUrl} alt="logo" />
+                    : <LogoText>{this.props.title}</LogoText>
+                }
+                {this.props.hasMenu && (
+                <React.Fragment>
+                    <BurgerMenuImg onClick={this.handleMenu} menuSize={this.props.menuSize} src={require('../../../images/menu.png')} alt='burgerMenu' />
+                    <BurgerMenu menuBackground={this.props.menuBackground} viewHeight={this.props.viewHeight} isMenuVisible={this.state.isMenuVisible}>
+                        <img src={require('../../../images/close.png')} alt="closeMenu" onClick={this.handleMenu} />
+                        {this.props.structure.sections.map(elem => (
+                            <li key={elem.id}><Link to={`#${elem.id}`}>{elem.title}</Link></li>
+                        ))}
+                    </BurgerMenu>
+        
+                </React.Fragment>
+                )}
+            </HeaderContainer>
+        )
+    }
+}

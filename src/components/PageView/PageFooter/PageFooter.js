@@ -19,14 +19,14 @@ const PageFooter = props => (
             copyrightFontSize={props.copyrightFontSize}
             copyrightColor={props.copyrightColor}
         >
-        © 2018, Landscape.com, Inc. or its affiliates
+        {props.copyrightText}
         </CopyrightMessage>}
-        {props.owner && <OwnerMessage
+        {props.ownerText && <OwnerMessage
         ownerFontFamily={props.ownerFontFamily}
         ownerFontSize={props.ownerFontSize}
         ownerColor={props.ownerColor}
         >
-            Made with love by {props.owner}
+            {props.ownerText}
         </OwnerMessage>}
         <Social>
         {props.social && props.social.map(elem => (

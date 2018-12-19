@@ -54,6 +54,11 @@ export default class FooterStructure extends React.Component {
     this.props.handleOnChange('hasCopyright', hasCopyright);
   };
 
+  handleCopyrightTextChange = event => {
+    const copyrightText = event.target.value;
+    this.props.handleOnChange("copyrightText", copyrightText);
+  };
+
   handleOnCopyrightFontFamilyChange = event => {
     const copyrightFontFamily = event.target.value;
     this.props.handleOnChange('copyrightFontFamily', copyrightFontFamily);
@@ -67,6 +72,11 @@ export default class FooterStructure extends React.Component {
   handleOnCopyrightColorClick = event => {
     const copyrightColor = event.target.value;
     this.props.handleOnChange('copyrightColor', copyrightColor);
+  };
+
+  handleOwnerTextChange = event => {
+    const ownerText = event.target.value;
+    this.props.handleOnChange("ownerText", ownerText);
   };
 
   handleOnOwnerFontFamilyChange = event => {
@@ -193,6 +203,10 @@ export default class FooterStructure extends React.Component {
             {innerStructure.hasCopyright && (
               <React.Fragment>
                 <ContentSection>
+                  <h4>Text</h4>
+                  <input type="text" onChange={this.handleCopyrightTextChange} value={innerStructure.copyrightText}/>
+                </ContentSection>
+                <ContentSection>
                   <h4>Font Family</h4>
                   <select
                     onChange={this.handleOnCopyrightFontFamilyChange}
@@ -226,6 +240,10 @@ export default class FooterStructure extends React.Component {
               </React.Fragment>
             )}
             <StyledTitle>Owner</StyledTitle>
+            <ContentSection>
+              <h4>Text</h4>
+              <input type="text" onChange={this.handleOwnerTextChange} value={innerStructure.ownerText}/>
+            </ContentSection>
             <ContentSection>
               <h4>Font Family</h4>
               <select
