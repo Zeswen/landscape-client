@@ -187,7 +187,7 @@ export default class HeaderStructure extends React.Component {
             <StyledTitle>Title</StyledTitle>
             <ContentSection>
               <h4>Logo</h4>
-              <input type="file" onChange={this.handleOnLogoChange} disabled />
+              <input type="file" onChange={this.handleOnLogoChange} style={{width: '205px'}} />
             </ContentSection>
             <ContentSection>
               <h4>Text</h4>

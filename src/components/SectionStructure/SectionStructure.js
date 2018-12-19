@@ -6,7 +6,6 @@ import {
   StyledTabContent,
   StyledTitle,
   ContentSection,
-  AddSectionButton
 } from './SectionStructure.styled';
 
 export default class SectionStructure extends React.Component {
@@ -145,8 +144,7 @@ export default class SectionStructure extends React.Component {
       title,
       fonts,
       isOpen,
-      innerStructure,
-      handleAddSection
+      innerStructure
     } = this.props;
     return (
       <React.Fragment>

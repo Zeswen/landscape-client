@@ -114,8 +114,6 @@ class Editor extends Component {
   }
 
   render() {
-    console.log(this.autoSave)
-
     return (
       <EditorWrapper>
         <EditorContainer>

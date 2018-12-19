@@ -4,7 +4,8 @@ import { HeaderContainer, AutoSaveButton, SaveButton } from './SidebarHeader.sty
 
 class SidebarHeader extends Component {
   state = {
-    message: null
+    message: null,
+    autoSave: false
   };
 
   handleSaveButton = () => {
@@ -43,8 +44,8 @@ class SidebarHeader extends Component {
   render() {
     return (
       <HeaderContainer>
-        <SaveButton autoSave={this.state.autoSave} message={this.state.message} onClick={this.handleSaveButton}>{this.state.autoSave ? '' : (this.state.message ? this.state.message : 'Save')}</SaveButton>
-        <AutoSaveButton autoSave={this.state.autoSave} onClick={this.handleAutoSaveButton}/>
+        <SaveButton autoSave={this.state.autoSave ? 1 : 0} message={this.state.message} onClick={this.handleSaveButton}>{this.state.autoSave ? '' : (this.state.message ? this.state.message : 'Save')}</SaveButton>
+        <AutoSaveButton autoSave={this.state.autoSave ? 1 : 0} onClick={this.handleAutoSaveButton}/>
       </HeaderContainer>
     );
   }

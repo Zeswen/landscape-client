@@ -11,7 +11,7 @@ export const BASE_SECTION = {
     paddingV: "16",
     position: "top",
     textAlign: "center",
-    title: "A Section",
+    title: "My Section",
     titleColor: "#F0FFF1",
     titleFontFamily: "Roboto",
     titleFontSize: "32"

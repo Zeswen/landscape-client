@@ -39,8 +39,3 @@ export const ContentSection = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-
-export const AddSectionButton = styled.button`
-    height: 40px;
-    width: 100%;
-`;
