@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let service = axios.create({
     // @TODO: baseUrl should be a .env variable
-    baseURL: 'http://localhost:5000/api/pages',
+    baseURL: `${process.env.REACT_APP_API_URL}/pages`,
     withCredentials: true
 })
 

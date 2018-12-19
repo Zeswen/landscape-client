@@ -9,6 +9,7 @@ import NewPage from './components/NewPage';
 import Page from './components/Page';
 import Editor from './components/Editor';
 
+
 class App extends Component {
   state = {
     user: null
