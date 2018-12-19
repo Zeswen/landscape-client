@@ -10,7 +10,7 @@ export const SectionContainer = styled.div`
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    background: ${({ backgroundImg, backgroundColor }) => backgroundImg ? `url(${backgroundImg})` : backgroundColor};
     justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;

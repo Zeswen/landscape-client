@@ -24,4 +24,15 @@ export default class PagesService {
         return this.service.post('/updatePage', { ...page })
             .then(res => res.data)
     }
+
+    uploadPhoto = (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        return this.service.post('/photoUpload', formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+     })
+    .then(response => response.data)
+    }
 }

@@ -15,6 +15,16 @@ export default class SectionStructure extends React.Component {
     this.contentRef = element;
   };
 
+  handleBackgroundImageChange = event => {
+    const image = event.target.files[0];
+    this.props.handlePhotoUpload(image)
+      .then(imgUrl => this.props.handleOnChange("backgroundImg", imgUrl.imgUrl, this.props.innerStructure.id))
+  }
+
+  handleBackgroundImageRemoval = () => {
+    this.props.handleOnChange("backgroundImg", null, this.props.innerStructure.id)
+  };
+
   handleOnBackgroundColorClick = event => {
     const backgroundColor = event.target.value;
     this.props.handleOnChange(
@@ -161,6 +171,13 @@ export default class SectionStructure extends React.Component {
           transitionState={transitionState}
           >
             <StyledTitle>Container</StyledTitle>
+            <ContentSection>
+              <h4>BG Image</h4>
+              <div>
+                <input type="file" onChange={this.handleBackgroundImageChange} style={{width: '105px'}} />
+                <button onClick={this.handleBackgroundImageRemoval}>Remove Image</button>
+              </div>
+            </ContentSection>
             <ContentSection>
               <h4>BG Color</h4>
               <input

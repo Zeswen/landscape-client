@@ -8,6 +8,7 @@ const PageSections = props => (
             <SectionContainer
             id={`section-${index+1}`}
             key={index}
+            backgroundImg={section.backgroundImg}
             backgroundColor={section.backgroundColor}
             position={section.position}
             height={section.height}

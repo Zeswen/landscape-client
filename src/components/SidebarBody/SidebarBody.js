@@ -24,6 +24,7 @@ export default class SidebarBody extends React.Component {
   render() {
     const {
       handleChangeHeader,
+      handlePhotoUpload,
       handleChangeSection,
       handleAddSection,
       handleChangeFooter,
@@ -42,6 +43,7 @@ export default class SidebarBody extends React.Component {
             isOpen={openTab === 'Header'}
             onClickTab={this.handleOnClickTab}
             handleOnChange={handleChangeHeader}
+            handlePhotoUpload={handlePhotoUpload}
             title="Header"
           />
           )}
@@ -56,6 +58,7 @@ export default class SidebarBody extends React.Component {
               isOpen={openTab === `Section ${index + 1}`}
               onClickTab={this.handleOnClickTab}
               handleOnChange={handleChangeSection}
+              handlePhotoUpload={handlePhotoUpload}
               title={`Section ${index + 1}`}
             />
           )))}
