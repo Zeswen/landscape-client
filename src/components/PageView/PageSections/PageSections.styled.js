@@ -11,6 +11,7 @@ export const SectionContainer = styled.div`
     display: flex;
     align-items: center;
     background: ${({ backgroundImg, backgroundColor }) => backgroundImg ? `url(${backgroundImg})` : backgroundColor};
+    background-size: cover;
     justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
