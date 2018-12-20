@@ -18,7 +18,6 @@ const FILTER_EFFECTS = (percent) => ({
 })
 
 export const HeaderContainer = styled.div`
-
     display: flex;
     align-items: center;
     position: relative;
@@ -37,6 +36,11 @@ export const HeaderContainer = styled.div`
     color: ${({ color, alpha }) => `rgba(${hexToRgb(color)}, ${alpha})`};
     transition: all 0.2s ease;
 
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
     ${({ hasMenu, position }) => (
         hasMenu && 
         position === 'center' && 
@@ -44,6 +48,7 @@ export const HeaderContainer = styled.div`
             content: '';
         }`
     )};
+    
 `;
 
 export const LogoText = styled.p`
@@ -57,25 +62,33 @@ export const LogoImage = styled.img`
 
 
 export const BurgerMenu = styled.div`
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    width: ${({ isMenuVisible }) => isMenuVisible ? '45%' : '0px' };
     transform: ${({ isMenuVisible }) => isMenuVisible ? 'translateX(0)' : 'translateX(150px)' };
     visibility: ${({ isMenuVisible }) => isMenuVisible ? 'visible' : 'hidden' };
     overflow: ${({ isMenuVisible }) => isMenuVisible ? 'auto' : 'hidden' };
     opacity: ${({ isMenuVisible }) => isMenuVisible ? '100' : '0' };
     height: ${({ viewHeight }) => viewHeight + 'px' };
     background-color: ${({ menuBackgroundColor, menuBackgroundAlpha }) => `rgba(${hexToRgb(menuBackgroundColor)}, ${menuBackgroundAlpha})`};
-    padding: 1.15rem 0.75rem;
+    padding: ${({ isMenuVisible }) => isMenuVisible ? ' 1.15rem 0.75rem' : '0' };
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
-    overflow: hidden;
     position: absolute;
+    z-index: 3;
     top: 0;
     right: 0;
     text-align: right;
     list-style: none;
     transition: all 0.2s ease;
+    transition: padding 0;
+    transition: width 0;
+
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
 
     > img {
         width: 20px;
