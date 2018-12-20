@@ -18,6 +18,7 @@ export const FooterContainer = styled.div`
     align-items: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
+    opacity: ${({ opacity }) => opacity};
     transition: all 0.2s ease;
 `;
 

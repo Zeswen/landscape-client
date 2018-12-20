@@ -29,6 +29,7 @@ export default class PageHeader extends Component {
                 height={this.props.height}
                 paddingV={this.props.paddingV}
                 paddingH={this.props.paddingH}
+                opacity={this.props.opacity}
                 hasMenu={this.props.hasMenu}
                 isReverse={this.props.isReverse}
                 fontFamily={this.props.fontFamily}

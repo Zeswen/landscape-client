@@ -17,6 +17,7 @@ export const SectionContainer = styled.div`
     justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
+    opacity: ${({ opacity }) => opacity};
     text-align: ${({ textAlign }) => textAlign};
     flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
     transition: all 0.2s ease;

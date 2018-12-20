@@ -21,6 +21,7 @@ export const HeaderContainer = styled.div`
     };
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
+    opacity: ${({ opacity }) => opacity};
     font-size: ${({ fontSize }) => fontSize}px;
     font-family: ${({ fontFamily }) => fontFamily};
     color: ${({ color, alpha }) => `rgba(${hexToRgb(color)}, ${alpha})`};

@@ -55,6 +55,11 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("paddingH", paddingH);
   };
 
+  handleOnOpacityChange = event => {
+    const opacity = event.target.value;
+    this.props.handleOnChange("opacity", opacity);
+  };
+
   handleOnBurguerChange = event => {
     const hasMenu = event.target.checked;
     this.props.handleOnChange("hasMenu", hasMenu);
@@ -184,6 +189,17 @@ export default class HeaderStructure extends React.Component {
                   onChange={this.handleOnPaddingHChange}
                 />
               </div>
+            </ContentSection>
+            <ContentSection>
+              <h4>Opacity</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.opacity}
+                onChange={this.handleOnOpacityChange}
+              />
             </ContentSection>
             <ContentSection>
               <h4>Menu</h4>
