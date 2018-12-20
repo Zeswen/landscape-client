@@ -13,6 +13,8 @@ const PageFooter = props => (
         paddingV={props.paddingV}
         paddingH={props.paddingH}
         opacity={props.opacity}
+        filter={props.filter}
+        filterPercentage={props.filterPercentage}
         isReverse={props.isReverse}
         hasCopyright={props.hasCopyright}
     >

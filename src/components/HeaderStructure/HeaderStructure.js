@@ -60,6 +60,16 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("opacity", opacity);
   };
 
+  handleOnFilterChange = event => {
+    const filter = event.target.value;
+    this.props.handleOnChange("filter", filter);
+  };
+
+  handleOnFilterPercentageChange = event => {
+    const filterPercentage = event.target.value;
+    this.props.handleOnChange("filterPercentage", filterPercentage);
+  };
+
   handleOnBurguerChange = event => {
     const hasMenu = event.target.checked;
     this.props.handleOnChange("hasMenu", hasMenu);
@@ -75,9 +85,14 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("menuSize", menuSize);
   };
 
-  handleMenuBackground = event => {
-    const color = event.target.value;
-    this.props.handleOnChange("menuBackground", color);
+  handleMenuBackgroundColor = event => {
+    const menuBackgroundColor = event.target.value;
+    this.props.handleOnChange("menuBackgroundColor", menuBackgroundColor);
+  };
+
+  handleMenuBackgroundAlpha = event => {
+    const menuBackgroundAlpha = event.target.value;
+    this.props.handleOnChange("menuBackgroundAlpha", menuBackgroundAlpha);
   };
 
   handleTitleChange = event => {
@@ -202,6 +217,29 @@ export default class HeaderStructure extends React.Component {
               />
             </ContentSection>
             <ContentSection>
+              <h4>Filter</h4>
+              <select 
+              value={innerStructure.filter}
+              onChange={this.handleOnFilterChange}
+              >
+                <option value="none">None</option>
+                <option value="contrast">Contrast</option>
+                <option value="grayscale">Grayscale</option>
+                <option value="invert">Invert</option>
+                <option value="saturate">Saturate</option>
+                <option value="sepia">Sepia</option>
+              </select>
+            </ContentSection>
+            {innerStructure.filter !== 'none' && 
+            <ContentSection>
+              <h4>Filter Percentage</h4>
+              <input
+                type="number"
+                value={innerStructure.filterPercentage}
+                onChange={this.handleOnFilterPercentageChange}
+              />
+            </ContentSection>}
+            <ContentSection>
               <h4>Menu</h4>
               <input
                 type="checkbox"
@@ -236,8 +274,21 @@ export default class HeaderStructure extends React.Component {
               <h4>Menu BG Color</h4>
               <input
                 type="color"
-                value={innerStructure.menuBackground}
-                onChange={this.handleMenuBackground}
+                value={innerStructure.menuBackgroundColor}
+                onChange={this.handleMenuBackgroundColor}
+              />
+            </ContentSection>
+            )}
+            {(innerStructure.hasMenu || innerStructure.isReverse) && (
+            <ContentSection>
+              <h4>Menu BG Alpha</h4>
+              <input
+                type="Number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.menuBackgroundAlpha}
+                onChange={this.handleMenuBackgroundAlpha}
               />
             </ContentSection>
             )}

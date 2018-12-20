@@ -9,6 +9,15 @@ const POSITION_TO_FLEX = {
     auto: ''
 };
 
+const FILTER_EFFECTS = (percent) => ({
+    none: '',
+    contrast: `contrast(${percent}%)`,
+    grayscale: `grayscale(${percent}%)`,
+    invert: `invert(${percent}%)`,
+    saturate: `saturate(${percent}%)`,
+    sepia: `sepia(${percent}%)`
+})
+
 export const FooterContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -19,6 +28,7 @@ export const FooterContainer = styled.div`
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     opacity: ${({ opacity }) => opacity};
+    filter: ${({ filter, filterPercentage }) => FILTER_EFFECTS(filterPercentage)[filter]};
     transition: all 0.2s ease;
 `;
 

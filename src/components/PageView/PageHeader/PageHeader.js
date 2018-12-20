@@ -19,9 +19,6 @@ export default class PageHeader extends Component {
     render() {
         return (
             //@TODO: Input on logo text. P on start, onclick input
-            //@TODO: Logo image via cloudinary
-            //@TODO: Functional burger menu
-            //@TODO: Lis to sections on burger menu
             <HeaderContainer
                 backgroundColor={this.props.backgroundColor}
                 backgroundAlpha={this.props.backgroundAlpha}
@@ -30,6 +27,8 @@ export default class PageHeader extends Component {
                 paddingV={this.props.paddingV}
                 paddingH={this.props.paddingH}
                 opacity={this.props.opacity}
+                filter={this.props.filter}
+                filterPercentage={this.props.filterPercentage}
                 hasMenu={this.props.hasMenu}
                 isReverse={this.props.isReverse}
                 fontFamily={this.props.fontFamily}
@@ -43,9 +42,10 @@ export default class PageHeader extends Component {
                 }
                 {this.props.hasMenu && (
                 <React.Fragment>
-                    <BurgerMenuImg onClick={this.handleMenu} menuSize={this.props.menuSize} src={require('../../../images/menu.png')} alt='burgerMenu' />
+                    {!this.state.isMenuVisible && <BurgerMenuImg onClick={this.handleMenu} menuSize={this.props.menuSize} src={require('../../../images/menu.png')} alt='burgerMenu' />}
                     <BurgerMenu 
                     menuBackgroundColor={this.props.menuBackgroundColor} 
+                    menuBackgroundAlpha={this.props.menuBackgroundAlpha} 
                     viewHeight={this.props.viewHeight} 
                     isMenuVisible={this.state.isMenuVisible}
                     >

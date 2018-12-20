@@ -42,6 +42,10 @@ export const ContentSection = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    > input {
+        max-width: 100px;
+    }
 `;
 
 export const SocialContentSection = styled.div`

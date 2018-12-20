@@ -16,6 +16,8 @@ const PageSections = props => (
             paddingV={section.paddingV}
             paddingH={section.paddingH}
             opacity={section.opacity}
+            filter={section.filter}
+            filterPercentage={section.filterPercentage}
             textAlign={section.textAlign}
             isReverse={section.isReverse}
             >

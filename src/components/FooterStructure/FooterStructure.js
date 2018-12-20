@@ -54,6 +54,16 @@ export default class FooterStructure extends React.Component {
     this.props.handleOnChange("opacity", opacity);
   };
 
+  handleOnFilterChange = event => {
+    const filter = event.target.value;
+    this.props.handleOnChange("filter", filter);
+  };
+
+  handleOnFilterPercentageChange = event => {
+    const filterPercentage = event.target.value;
+    this.props.handleOnChange("filterPercentage", filterPercentage);
+  };
+
   handleOnReverseChange = event => {
     const isReverse = event.target.checked;
     this.props.handleOnChange('isReverse', isReverse);
@@ -225,6 +235,29 @@ export default class FooterStructure extends React.Component {
                 onChange={this.handleOnOpacityChange}
               />
             </ContentSection>
+            <ContentSection>
+              <h4>Filter</h4>
+              <select 
+              value={innerStructure.filter}
+              onChange={this.handleOnFilterChange}
+              >
+                <option value="none">None</option>
+                <option value="contrast">Contrast</option>
+                <option value="grayscale">Grayscale</option>
+                <option value="invert">Invert</option>
+                <option value="saturate">Saturate</option>
+                <option value="sepia">Sepia</option>
+              </select>
+            </ContentSection>
+            {innerStructure.filter !== 'none' && 
+            <ContentSection>
+              <h4>Filter Percentage</h4>
+              <input
+                type="number"
+                value={innerStructure.filterPercentage}
+                onChange={this.handleOnFilterPercentageChange}
+              />
+            </ContentSection>}
             <ContentSection>
               <h4>Reverse</h4>
               <input

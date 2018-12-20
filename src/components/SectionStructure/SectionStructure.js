@@ -82,7 +82,17 @@ export default class SectionStructure extends React.Component {
 
   handleOnOpacityChange = event => {
     const opacity = event.target.value;
-    this.props.handleOnChange("opacity", opacity);
+    this.props.handleOnChange("opacity", opacity, this.props.innerStructure.id);
+  };
+
+  handleOnFilterChange = event => {
+    const filter = event.target.value;
+    this.props.handleOnChange("filter", filter, this.props.innerStructure.id);
+  };
+
+  handleOnFilterPercentageChange = event => {
+    const filterPercentage = event.target.value;
+    this.props.handleOnChange("filterPercentage", filterPercentage, this.props.innerStructure.id);
   };
 
   handleOnReverseChange = event => {
@@ -268,6 +278,29 @@ export default class SectionStructure extends React.Component {
                 onChange={this.handleOnOpacityChange}
               />
             </ContentSection>
+            <ContentSection>
+              <h4>Filter</h4>
+              <select 
+              value={innerStructure.filter}
+              onChange={this.handleOnFilterChange}
+              >
+                <option value="none">None</option>
+                <option value="contrast">Contrast</option>
+                <option value="grayscale">Grayscale</option>
+                <option value="invert">Invert</option>
+                <option value="saturate">Saturate</option>
+                <option value="sepia">Sepia</option>
+              </select>
+            </ContentSection>
+            {innerStructure.filter !== 'none' && 
+            <ContentSection>
+              <h4>Filter Percentage</h4>
+              <input
+                type="number"
+                value={innerStructure.filterPercentage}
+                onChange={this.handleOnFilterPercentageChange}
+              />
+            </ContentSection>}
             <ContentSection>
               <h4>Text Align</h4>
               <select

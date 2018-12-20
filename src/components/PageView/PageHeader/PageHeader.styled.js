@@ -8,6 +8,15 @@ const POSITION_TO_FLEX = {
     right: 'flex-end',
 };
 
+const FILTER_EFFECTS = (percent) => ({
+    none: '',
+    contrast: `contrast(${percent}%)`,
+    grayscale: `grayscale(${percent}%)`,
+    invert: `invert(${percent}%)`,
+    saturate: `saturate(${percent}%)`,
+    sepia: `sepia(${percent}%)`
+})
+
 export const HeaderContainer = styled.div`
 
     display: flex;
@@ -22,6 +31,7 @@ export const HeaderContainer = styled.div`
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     opacity: ${({ opacity }) => opacity};
+    filter: ${({ filter, filterPercentage }) => FILTER_EFFECTS(filterPercentage)[filter]};
     font-size: ${({ fontSize }) => fontSize}px;
     font-family: ${({ fontFamily }) => fontFamily};
     color: ${({ color, alpha }) => `rgba(${hexToRgb(color)}, ${alpha})`};

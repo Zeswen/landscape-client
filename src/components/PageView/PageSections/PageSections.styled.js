@@ -8,6 +8,15 @@ const POSITION_TO_FLEX = {
     bottom: 'flex-end',
 };
 
+const FILTER_EFFECTS = (percent) => ({
+    none: '',
+    contrast: `contrast(${percent}%)`,
+    grayscale: `grayscale(${percent}%)`,
+    invert: `invert(${percent}%)`,
+    saturate: `saturate(${percent}%)`,
+    sepia: `sepia(${percent}%)`
+})
+
 export const SectionContainer = styled.div`
     padding: 0.5rem 1rem;
     display: flex;
@@ -18,6 +27,7 @@ export const SectionContainer = styled.div`
     height: ${({ height }) => height}px;
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     opacity: ${({ opacity }) => opacity};
+    filter: ${({ filter, filterPercentage }) => FILTER_EFFECTS(filterPercentage)[filter]};
     text-align: ${({ textAlign }) => textAlign};
     flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
     transition: all 0.2s ease;
