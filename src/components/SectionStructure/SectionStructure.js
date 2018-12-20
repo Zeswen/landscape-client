@@ -34,6 +34,11 @@ export default class SectionStructure extends React.Component {
     );
   };
 
+  handleBackgroundAlphaChange = event => {
+    const backgroundAlpha = event.target.value;
+    this.props.handleOnChange("backgroundAlpha", backgroundAlpha, this.props.innerStructure.id);
+  };
+
   handleOnPositionChange = event => {
     const position = event.target.value;
     this.props.handleOnChange(
@@ -116,6 +121,11 @@ export default class SectionStructure extends React.Component {
     );
   };
 
+  handleTitleAlphaChange = event => {
+    const titleAlpha = event.target.value;
+    this.props.handleOnChange("titleAlpha", titleAlpha, this.props.innerStructure.id);
+  };
+
   handleDescriptionChange = event => {
     const description = event.target.value;
     this.props.handleOnChange("description", description, this.props.innerStructure.id);
@@ -146,6 +156,11 @@ export default class SectionStructure extends React.Component {
       descriptionColor,
       this.props.innerStructure.id
     );
+  };
+  
+  handleDescriptionAlphaChange = event => {
+    const descriptionAlpha = event.target.value;
+    this.props.handleOnChange("descriptionAlpha", descriptionAlpha, this.props.innerStructure.id);
   };
 
   render() {
@@ -184,6 +199,17 @@ export default class SectionStructure extends React.Component {
                 type="color"
                 onChange={this.handleOnBackgroundColorClick}
                 value={innerStructure.backgroundColor}
+              />
+            </ContentSection>
+            <ContentSection>
+              <h4>BG Alpha</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.backgroundAlpha}
+                onChange={this.handleBackgroundAlphaChange}
               />
             </ContentSection>
             <ContentSection>
@@ -282,6 +308,17 @@ export default class SectionStructure extends React.Component {
                 value={innerStructure.titleColor}
               />
             </ContentSection>
+            <ContentSection>
+              <h4>Alpha</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.titleAlpha}
+                onChange={this.handleTitleAlphaChange}
+              />
+            </ContentSection>
             <StyledTitle>Description</StyledTitle>
             <ContentSection>
               <h4>Text</h4>
@@ -318,11 +355,17 @@ export default class SectionStructure extends React.Component {
                 value={innerStructure.descriptionColor}
               />
             </ContentSection>
-            {/* <AddSectionButton
-              onClick={() => handleAddSection(this.props.innerStructure.id)}
-            >
-              Clone Section
-            </AddSectionButton> */}
+            <ContentSection>
+              <h4>Alpha</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.descriptionAlpha}
+                onChange={this.handleDescriptionAlphaChange}
+              />
+            </ContentSection>
           </StyledTabContent>
         )}
         </Transition>

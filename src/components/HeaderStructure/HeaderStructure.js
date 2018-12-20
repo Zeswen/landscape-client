@@ -30,6 +30,11 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("backgroundColor", backgroundColor);
   };
 
+  handleBackgroundAlphaChange = event => {
+    const backgroundAlpha = event.target.value;
+    this.props.handleOnChange("backgroundAlpha", backgroundAlpha);
+  };
+
   handleOnPositionChange = event => {
     const position = event.target.value;
     this.props.handleOnChange("position", position);
@@ -90,6 +95,11 @@ export default class HeaderStructure extends React.Component {
     this.props.handleOnChange("color", color);
   };
 
+  handleAlphaChange = event => {
+    const alpha = event.target.value;
+    this.props.handleOnChange("alpha", alpha);
+  };
+
   render() {
     const { onClickTab, title, fonts, isOpen, innerStructure } = this.props;
 
@@ -112,10 +122,21 @@ export default class HeaderStructure extends React.Component {
             <StyledTitle>Container</StyledTitle>
             <ContentSection>
               <h4>BG Color</h4>
+                <input
+                  type="color"
+                  onChange={this.handleOnBackgroundColorClick}
+                  value={innerStructure.backgroundColor}
+                />
+            </ContentSection>
+            <ContentSection>
+              <h4>BG Alpha</h4>
               <input
-                type="color"
-                onChange={this.handleOnBackgroundColorClick}
-                value={innerStructure.backgroundColor}
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.backgroundAlpha}
+                onChange={this.handleBackgroundAlphaChange}
               />
             </ContentSection>
             <ContentSection>
@@ -196,7 +217,7 @@ export default class HeaderStructure extends React.Component {
             )}
             {(innerStructure.hasMenu || innerStructure.isReverse) && (
             <ContentSection>
-              <h4>BG Color</h4>
+              <h4>Menu BG Color</h4>
               <input
                 type="color"
                 value={innerStructure.menuBackground}
@@ -245,6 +266,17 @@ export default class HeaderStructure extends React.Component {
                 type="color"
                 onChange={this.handleOnColorClick}
                 value={innerStructure.color}
+              />
+            </ContentSection>
+            <ContentSection>
+              <h4>Alpha</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.alpha}
+                onChange={this.handleAlphaChange}
               />
             </ContentSection>
           </StyledTabContent>

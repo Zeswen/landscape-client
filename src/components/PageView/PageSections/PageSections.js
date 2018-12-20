@@ -10,6 +10,7 @@ const PageSections = props => (
             key={index}
             backgroundImg={section.backgroundImg}
             backgroundColor={section.backgroundColor}
+            backgroundAlpha={section.backgroundAlpha}
             position={section.position}
             height={section.height}
             paddingV={section.paddingV}
@@ -21,6 +22,7 @@ const PageSections = props => (
                 titleFontFamily={section.titleFontFamily}
                 titleFontSize={section.titleFontSize}
                 titleColor={section.titleColor}
+                titleAlpha={section.titleAlpha}
                 >
                     {section.title}
                 </TitleText>
@@ -28,6 +30,7 @@ const PageSections = props => (
                 descriptionFontFamily={section.descriptionFontFamily}
                 descriptionFontSize={section.descriptionFontSize}
                 descriptionColor={section.descriptionColor}
+                descriptionAlpha={section.descriptionAlpha}
                 >
                     {section.description}
                 </DescriptionText>

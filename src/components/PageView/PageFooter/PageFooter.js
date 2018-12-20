@@ -7,6 +7,7 @@ const PageFooter = props => (
 
     <FooterContainer
         backgroundColor={props.backgroundColor}
+        backgroundAlpha={props.backgroundAlpha}
         position={props.position}
         height={props.height}
         paddingV={props.paddingV}
@@ -18,6 +19,7 @@ const PageFooter = props => (
             copyrightFontFamily={props.copyrightFontFamily}
             copyrightFontSize={props.copyrightFontSize}
             copyrightColor={props.copyrightColor}
+            copyrightAlpha={props.copyrightAlpha}
         >
         {props.copyrightText}
         </CopyrightMessage>}
@@ -25,6 +27,7 @@ const PageFooter = props => (
         ownerFontFamily={props.ownerFontFamily}
         ownerFontSize={props.ownerFontSize}
         ownerColor={props.ownerColor}
+        ownerAlpha={props.ownerAlpha}
         >
             {props.ownerText}
         </OwnerMessage>}

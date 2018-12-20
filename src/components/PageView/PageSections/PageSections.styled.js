@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import hexToRgb from '../../../utils/HexToRgb';
+
 const POSITION_TO_FLEX = {
     top: 'flex-start',
     center: 'center',
@@ -10,7 +12,7 @@ export const SectionContainer = styled.div`
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-    background: ${({ backgroundImg, backgroundColor }) => backgroundImg ? `url(${backgroundImg})` : backgroundColor};
+    background: ${({ backgroundImg, backgroundColor, backgroundAlpha }) => backgroundImg ? `url(${backgroundImg})` : `rgba(${hexToRgb(backgroundColor)}, ${backgroundAlpha})`};
     background-size: cover;
     justify-content: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
@@ -26,7 +28,7 @@ export const TitleText = styled.p`
     display: flex;
     font-size: ${({ titleFontSize }) => titleFontSize}px;
     font-family: ${({ titleFontFamily }) => titleFontFamily};
-    color: ${({ titleColor }) => titleColor};
+    color: ${({ titleColor, titleAlpha }) => `rgba(${hexToRgb(titleColor)}, ${titleAlpha})`};
     transition: all 0.2s ease;
 `;
 
@@ -35,6 +37,6 @@ export const DescriptionText = styled.p`
     display: flex;
     font-size: ${({ descriptionFontSize }) => descriptionFontSize}px;
     font-family: ${({ descriptionFontFamily }) => descriptionFontFamily};
-    color: ${({ descriptionColor }) => descriptionColor};
+    color: ${({ descriptionColor, descriptionAlpha }) => `rgba(${hexToRgb(descriptionColor)}, ${descriptionAlpha})`};
     transition: all 0.2s ease;
 `;

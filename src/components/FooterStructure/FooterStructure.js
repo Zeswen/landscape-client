@@ -24,6 +24,11 @@ export default class FooterStructure extends React.Component {
     this.props.handleOnChange('backgroundColor', backgroundColor);
   };
 
+  handleBackgroundAlphaChange = event => {
+    const backgroundAlpha = event.target.value;
+    this.props.handleOnChange("backgroundAlpha", backgroundAlpha);
+  };
+
   handleOnPositionChange = event => {
     const position = event.target.value;
     this.props.handleOnChange('position', position);
@@ -74,6 +79,11 @@ export default class FooterStructure extends React.Component {
     this.props.handleOnChange('copyrightColor', copyrightColor);
   };
 
+  handleCopyrightAlphaChange = event => {
+    const copyrightAlpha = event.target.value;
+    this.props.handleOnChange("copyrightAlpha", copyrightAlpha);
+  };
+
   handleOwnerTextChange = event => {
     const ownerText = event.target.value;
     this.props.handleOnChange("ownerText", ownerText);
@@ -92,6 +102,11 @@ export default class FooterStructure extends React.Component {
   handleOnOwnerColorClick = event => {
     const ownerColor = event.target.value;
     this.props.handleOnChange('ownerColor', ownerColor);
+  };
+
+  handleOwnerAlphaChange = event => {
+    const ownerAlpha = event.target.value;
+    this.props.handleOnChange("ownerAlpha", ownerAlpha);
   };
 
   isSocialActive = event => {
@@ -140,6 +155,17 @@ export default class FooterStructure extends React.Component {
                 type="color"
                 onChange={this.handleOnBackgroundColorClick}
                 value={innerStructure.backgroundColor}
+              />
+            </ContentSection>
+            <ContentSection>
+              <h4>BG Alpha</h4>
+              <input
+                type="number"
+                min="0"
+                max="1"
+                step='0.1'
+                value={innerStructure.backgroundAlpha}
+                onChange={this.handleBackgroundAlphaChange}
               />
             </ContentSection>
             <ContentSection>
@@ -237,6 +263,17 @@ export default class FooterStructure extends React.Component {
                     value={innerStructure.copyrightColor}
                   />
                 </ContentSection>
+                <ContentSection>
+                  <h4>Alpha</h4>
+                  <input
+                    type="number"
+                    min="0"
+                    max="1"
+                    step='0.1'
+                    value={innerStructure.copyrightAlpha}
+                    onChange={this.handleCopyrightAlphaChange}
+                  />
+                </ContentSection>
               </React.Fragment>
             )}
             <StyledTitle>Owner</StyledTitle>
@@ -275,6 +312,17 @@ export default class FooterStructure extends React.Component {
                 value={innerStructure.ownerColor}
               />
             </ContentSection>
+            <ContentSection>
+                  <h4>Alpha</h4>
+                  <input
+                  type="number"
+                  min="0"
+                  max="1"
+                  step='0.1'
+                  value={innerStructure.ownerAlpha}
+                  onChange={this.handleOwnerAlphaChange}
+                />
+              </ContentSection>
             <SocialContentSection>
               <SocialMedias>
                 <SocialMedia

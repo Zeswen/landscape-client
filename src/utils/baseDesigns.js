@@ -1,8 +1,10 @@
 export const BASE_SECTION = {
     backgroundColor: "#2c2965",
+    backgroundAlpha: 1,
     backgroundImg: null,
     description: "This is a section",
     descriptionColor: "#F0FFF1",
+    descriptionAlpha: 1,
     descriptionFontFamily: "Roboto",
     descriptionFontSize: "32",
     height: "170",
@@ -13,6 +15,7 @@ export const BASE_SECTION = {
     textAlign: "center",
     title: "My Section",
     titleColor: "#F0FFF1",
+    titleAlpha: 1,
     titleFontFamily: "Roboto",
     titleFontSize: "32"
 };

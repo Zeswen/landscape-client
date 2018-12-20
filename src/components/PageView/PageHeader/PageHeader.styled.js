@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import hexToRgb from '../../../utils/HexToRgb';
+
 const POSITION_TO_FLEX = {
     left: 'flex-start',
     center: 'center',
@@ -11,7 +13,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    background-color: ${({ backgroundColor, backgroundAlpha }) => `rgba(${hexToRgb(backgroundColor)}, ${backgroundAlpha})`};
     flex-direction: ${({ isReverse }) => (isReverse ? 'row-reverse' : 'row')};
     justify-content: ${({ hasMenu, position }) => hasMenu
         ? 'space-between'
@@ -21,7 +23,7 @@ export const HeaderContainer = styled.div`
     padding: ${({ paddingV }) => paddingV}px ${({ paddingH }) => paddingH}px;
     font-size: ${({ fontSize }) => fontSize}px;
     font-family: ${({ fontFamily }) => fontFamily};
-    color: ${({ color }) => color};
+    color: ${({ color, alpha }) => `rgba(${hexToRgb(color)}, ${alpha})`};
     transition: all 0.2s ease;
 
     ${({ hasMenu, position }) => (
@@ -53,7 +55,7 @@ export const BurgerMenu = styled.div`
     overflow: ${({ isMenuVisible }) => isMenuVisible ? 'auto' : 'hidden' };
     opacity: ${({ isMenuVisible }) => isMenuVisible ? '100' : '0' };
     height: ${({ viewHeight }) => viewHeight + 'px' };
-    background-color: ${({ menuBackground }) => menuBackground ? menuBackground : 'white'};
+    background-color: ${({ menuBackgroundColor, menuBackgroundAlpha }) => `rgba(${hexToRgb(menuBackgroundColor)}, ${menuBackgroundAlpha})`};
     padding: 1.15rem 0.75rem;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
     overflow: hidden;

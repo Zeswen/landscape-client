@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import hexToRgb from '../../../utils/HexToRgb';
+
 const POSITION_TO_FLEX = {
     left: 'flex-start',
     center: 'center',
@@ -11,7 +13,7 @@ export const FooterContainer = styled.div`
     display: flex;
     justify-content: center;
     text-align: center;
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    background-color: ${({ backgroundColor, backgroundAlpha }) => `rgba(${hexToRgb(backgroundColor)}, ${backgroundAlpha})`};
     flex-direction: ${({ isReverse }) => (isReverse ? 'column-reverse' : 'column')};
     align-items: ${({ position }) => POSITION_TO_FLEX[position]};
     height: ${({ height }) => height}px;
@@ -24,6 +26,7 @@ export const CopyrightMessage = styled.p`
     font-size: ${({ copyrightFontSize }) => copyrightFontSize}px;
     font-family: ${({ copyrightFontFamily }) => copyrightFontFamily};
     color: ${({ copyrightColor }) => copyrightColor};
+    color: ${({ copyrightColor, copyrightAlpha }) => `rgba(${hexToRgb(copyrightColor)}, ${copyrightAlpha})`};
     transition: all 0.2s ease;
 `;
 
@@ -32,6 +35,7 @@ export const OwnerMessage = styled.p`
     font-size: ${({ ownerFontSize }) => ownerFontSize}px;
     font-family: ${({ ownerFontFamily }) => ownerFontFamily};
     color: ${({ ownerColor }) => ownerColor};
+    color: ${({ ownerColor, ownerAlpha }) => `rgba(${hexToRgb(ownerColor)}, ${ownerAlpha})`};
     transition: all 0.2s ease;
 `;
 
